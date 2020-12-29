@@ -1,5 +1,8 @@
 {
   "_locale": "en",
   "title_uninstall": "Uninstall",
-  "title_about_us": "About Us"
+  "title_about_us": "About Us",
+  "c_framework_ok": "All Done! Now you can enjoy Google services.",
+  "c_framework_error": "Google framework isn’t installed on your device!",
+  "c_framework_warning": "Your Google Play service is incomplete!"
 }

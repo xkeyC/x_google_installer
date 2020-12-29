@@ -64,6 +64,36 @@ class S {
       args: [],
     );
   }
+
+  /// `All Done! Now you can enjoy Google services.`
+  String get c_framework_ok {
+    return Intl.message(
+      'All Done! Now you can enjoy Google services.',
+      name: 'c_framework_ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google framework isn’t installed on your device!`
+  String get c_framework_error {
+    return Intl.message(
+      'Google framework isn’t installed on your device!',
+      name: 'c_framework_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Google Play service is incomplete!`
+  String get c_framework_warning {
+    return Intl.message(
+      'Your Google Play service is incomplete!',
+      name: 'c_framework_warning',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

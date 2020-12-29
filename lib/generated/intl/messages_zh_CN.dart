@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("zh_CN"),
+    "c_framework_error" : MessageLookupByLibrary.simpleMessage("啊嘞！您的设备还没有安装Google Play服务。"),
+    "c_framework_ok" : MessageLookupByLibrary.simpleMessage("全部OK！现在，您可以在您的设备上享受Google Play服务！"),
+    "c_framework_warning" : MessageLookupByLibrary.simpleMessage("道友请留步！您设备的Google Play不完整。"),
     "title_about_us" : MessageLookupByLibrary.simpleMessage("关于我们"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("卸载")
   };

@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("en"),
+    "c_framework_error" : MessageLookupByLibrary.simpleMessage("Google framework isn’t installed on your device!"),
+    "c_framework_ok" : MessageLookupByLibrary.simpleMessage("All Done! Now you can enjoy Google services."),
+    "c_framework_warning" : MessageLookupByLibrary.simpleMessage("Your Google Play service is incomplete!"),
     "title_about_us" : MessageLookupByLibrary.simpleMessage("About Us"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("Uninstall")
   };

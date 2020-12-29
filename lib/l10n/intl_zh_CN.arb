@@ -1,5 +1,8 @@
 {
   "_locale": "zh_CN",
   "title_uninstall": "卸载",
-  "title_about_us": "关于我们"
+  "title_about_us": "关于我们",
+  "c_framework_ok": "全部OK！现在，您可以在您的设备上享受Google Play服务！",
+  "c_framework_error": "啊嘞！您的设备还没有安装Google Play服务。",
+  "c_framework_warning": "道友请留步！您设备的Google Play不完整。"
 }
