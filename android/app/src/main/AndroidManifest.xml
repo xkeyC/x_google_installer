@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.clinux.x_google_installer">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
-        android:label="x_google_installer"
+        android:label="XGI"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
