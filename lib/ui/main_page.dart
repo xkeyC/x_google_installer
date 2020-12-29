@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:installed_apps/app_info.dart';
+import 'package:installed_apps/installed_apps.dart';
 import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
@@ -12,6 +13,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  GoogleFrameworkStatus status = GoogleFrameworkStatus(null, null, null);
+
+  @override
+  void initState() {
+    checkState();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +46,39 @@ class _MainPageState extends State<MainPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            StateBanner(0),
+            StateBanner(status.getStatusCode()),
           ],
         ),
       ),
     );
+  }
+
+  void checkState() async {
+    AppInfo framework =
+        await InstalledApps.getAppInfo("com.google.android.gsf");
+    AppInfo service = await InstalledApps.getAppInfo("com.google.android.gms");
+    AppInfo store = await InstalledApps.getAppInfo("com.android.vending");
+    setState(() {
+      status = GoogleFrameworkStatus(framework, service, store);
+    });
+  }
+}
+
+class GoogleFrameworkStatus {
+  AppInfo framework;
+  AppInfo service;
+  AppInfo store;
+
+  GoogleFrameworkStatus(this.framework, this.service, this.store);
+
+  int getStatusCode() {
+    if (framework == null && service == null && store == null) {
+      return -1;
+    }
+    if (framework == null || service == null || store == null) {
+      return -2;
+    }
+    return 0;
   }
 }
 
