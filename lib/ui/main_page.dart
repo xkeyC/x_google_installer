@@ -62,19 +62,22 @@ class _MainPageState extends State<MainPage> {
   void checkState() async {
     PackageInfo framework;
     try {
-      framework = await PackageInfo.fromPlatformByPackageName("com.google.android.gsf");
+      framework =
+          await PackageInfo.fromPlatformByPackageName("com.google.android.gsf");
     } catch (e) {
       print(e);
     }
     PackageInfo service;
     try {
-      service = await PackageInfo.fromPlatformByPackageName("com.google.android.gms");
+      service =
+          await PackageInfo.fromPlatformByPackageName("com.google.android.gms");
     } catch (e) {
       print(e);
     }
     PackageInfo store;
     try {
-      store = await PackageInfo.fromPlatformByPackageName("com.android.vending");
+      store =
+          await PackageInfo.fromPlatformByPackageName("com.android.vending");
     } catch (e) {
       print(e);
     }
@@ -143,7 +146,7 @@ class _DeviceInformationBannerState extends State<DeviceInformationBanner> {
                     ),
                     S.of(context).title_architecture,
                     "${AppConf.androidDeviceInfo.supportedAbis.toString().replaceAll("[", "").replaceAll("]", "")}",
-                    subtitleSize: 9),
+                    subtitleSize: 8),
                 makeDeviceInfoRow(
                     context,
                     Icon(
@@ -196,12 +199,17 @@ Widget makeDeviceInfoRow(
           title,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        Text(
-          subtitle,
-          style: TextStyle(
-              fontSize: subtitleSize,
-              color: Colors.black.withAlpha(120),
-              fontWeight: FontWeight.bold),
+        SizedBox(
+          height: 12,
+          child: Center(
+            child: Text(
+              subtitle,
+              style: TextStyle(
+                  fontSize: subtitleSize,
+                  color: Colors.black.withAlpha(120),
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
         )
       ],
     ),
@@ -227,7 +235,6 @@ class _StateBannerState extends State<StateBanner> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
       width: MediaQuery.of(context).size.width,
       color: getBannerColorWithStatus(),
       child: Column(
@@ -243,13 +250,21 @@ class _StateBannerState extends State<StateBanner> {
             height: 10,
           ),
           Center(
-            child: Text(
-              getBannerTextWithStatus(),
-              style: TextStyle(
+            child: Padding(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Text(
+                getBannerTextWithStatus(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
+          ),
+          SizedBox(
+            height: 20,
           )
         ],
       ),

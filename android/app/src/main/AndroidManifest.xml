@@ -2,6 +2,12 @@
     package="co.clinux.x_google_installer">
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <queries>
+        <package android:name="com.google.android.gsf" />
+        <package android:name="com.google.android.gms" />
+        <package android:name="com.android.vending" />
+    </queries>
+
    <application
         android:label="XGI"
         android:icon="@mipmap/ic_launcher">
