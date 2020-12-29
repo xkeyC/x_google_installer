@@ -86,6 +86,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       ],
       supportedLocales: [
         const Locale('en'),
+        const Locale('zh','CN')
       ],
       home: Builder(
         builder: (BuildContext context) {

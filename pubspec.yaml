@@ -14,10 +14,13 @@ dependencies:
     sdk: flutter
   hive: ^1.4.4+1
   hive_flutter: ^0.3.1
-  get_version: ^0.2.2
   font_awesome_flutter: ^8.11.0
   dio: ^3.0.10
-  installed_apps: ^1.1.1
+  device_info: ^1.0.0
+  package_info:
+    git:
+      url: https://github.com/xkeyC/plugins.git
+      path: packages/package_info
 
 dev_dependencies:
   flutter_test:

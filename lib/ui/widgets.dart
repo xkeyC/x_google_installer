@@ -31,7 +31,9 @@ Color getTextColor(BuildContext context) {
 }
 
 Color getAppBackGroundColor(BuildContext context) {
-  return isDarkMode(context) ? Theme.of(context).primaryColor : Colors.white;
+  return isDarkMode(context)
+      ? Theme.of(context).primaryColor
+      : const Color.fromARGB(255, 242, 241, 246);
 }
 
 bool isDarkMode(BuildContext context) {

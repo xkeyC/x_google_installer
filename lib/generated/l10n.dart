@@ -65,6 +65,26 @@ class S {
     );
   }
 
+  /// `DeviceInfo`
+  String get title_deviceInfo {
+    return Intl.message(
+      'DeviceInfo',
+      name: 'title_deviceInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Architecture`
+  String get title_architecture {
+    return Intl.message(
+      'Architecture',
+      name: 'title_architecture',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All Done! Now you can enjoy Google services.`
   String get c_framework_ok {
     return Intl.message(

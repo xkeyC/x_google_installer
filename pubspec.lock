@@ -99,6 +99,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  device_info:
+    dependency: "direct main"
+    description:
+      name: device_info
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  device_info_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   dio:
     dependency: "direct main"
     description:
@@ -159,13 +173,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  get_version:
-    dependency: "direct main"
-    description:
-      name: get_version
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.2"
   glob:
     dependency: transitive
     description:
@@ -194,13 +201,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
-  installed_apps:
-    dependency: "direct main"
-    description:
-      name: installed_apps
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.1"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -277,12 +277,14 @@ packages:
     source: hosted
     version: "1.9.3"
   package_info:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      name: package_info
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.3+2"
+      path: "packages/package_info"
+      ref: HEAD
+      resolved-ref: ef0200707c9682283affc02588001ac36bfd2af0
+      url: "https://github.com/xkeyC/plugins.git"
+    source: git
+    version: "0.4.3+3"
   path:
     dependency: transitive
     description:
@@ -345,7 +347,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.1.0-nullsafety.1"
   pool:
     dependency: transitive
     description:

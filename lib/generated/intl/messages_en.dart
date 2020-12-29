@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "c_framework_ok" : MessageLookupByLibrary.simpleMessage("All Done! Now you can enjoy Google services."),
     "c_framework_warning" : MessageLookupByLibrary.simpleMessage("Your Google Play service is incomplete!"),
     "title_about_us" : MessageLookupByLibrary.simpleMessage("About Us"),
+    "title_architecture" : MessageLookupByLibrary.simpleMessage("Architecture"),
+    "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("DeviceInfo"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("Uninstall")
   };
 }
