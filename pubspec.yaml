@@ -17,6 +17,8 @@ dependencies:
   font_awesome_flutter: ^8.11.0
   dio: ^3.0.10
   device_info: ^1.0.0
+  cached_network_image: ^2.5.0
+  external_app_launcher: ^0.0.1
   package_info:
     git:
       url: https://github.com/xkeyC/plugins.git

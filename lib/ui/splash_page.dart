@@ -84,60 +84,64 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         GlobalWidgetsLocalizations.delegate,
         S.delegate
       ],
-      supportedLocales: [
-        const Locale('en'),
-        const Locale('zh','CN')
-      ],
+      supportedLocales: [const Locale('en'), const Locale('zh', 'CN')],
       home: Builder(
         builder: (BuildContext context) {
           return Scaffold(
-            key: _scaffold,
-            body: Stack(
-              children: [
-                Center(
-                  child: SlideTransition(
-                    position: flutterLogoAnimation,
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: FlutterLogo(
-                            style: _flutterLogoStyle,
-                            duration:
-                                Duration(milliseconds: flutterLogoDuration),
-                            curve: Curves.easeInExpo,
+              key: _scaffold,
+              body: Stack(
+                children: [
+                  Center(
+                    child: SlideTransition(
+                      position: flutterLogoAnimation,
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: FlutterLogo(
+                              style: _flutterLogoStyle,
+                              duration:
+                                  Duration(milliseconds: flutterLogoDuration),
+                              curve: Curves.easeInExpo,
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          child: showPowerByText
-                              ? Center(
-                                  child: Text(
-                                    "Powered By",
-                                    style: TextStyle(fontSize: 9),
-                                  ),
-                                )
-                              : SizedBox(),
-                          top: 25,
-                          left: 0,
-                          right: 40,
-                        )
-                      ],
+                          Positioned(
+                            child: showPowerByText
+                                ? Center(
+                                    child: Text(
+                                      "Powered By",
+                                      style: TextStyle(fontSize: 9),
+                                    ),
+                                  )
+                                : SizedBox(),
+                            top: 25,
+                            left: 0,
+                            right: 40,
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Center(
-                  child: FadeTransition(
-                    opacity: _appLogoController,
-                    child: SizedBox(
-                      height: 100,
-                      child: Image.asset("assets/appLogo.png"),
+                  Center(
+                    child: FadeTransition(
+                      opacity: _appLogoController,
+                      child: SizedBox(
+                        height: 100,
+                        child: Image.asset("assets/appLogo.png"),
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-          );
+                  )
+                ],
+              ),
+              bottomNavigationBar: SizedBox(
+                  height: 20,
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: Text(showPowerByText
+                        ? "clinux.co Open Source Project"
+                        : S.of(context).title_checking_data),
+                  )));
         },
       ),
     );

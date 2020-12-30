@@ -27,7 +27,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "c_framework_warning" : MessageLookupByLibrary.simpleMessage("道友请留步！您设备的 Google Play 不完整。"),
     "title_about_us" : MessageLookupByLibrary.simpleMessage("关于我们"),
     "title_architecture" : MessageLookupByLibrary.simpleMessage("处理器架构"),
+    "title_checking_data" : MessageLookupByLibrary.simpleMessage("正在核对信息..."),
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("设备信息"),
+    "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google 应用状态"),
+    "title_not_install" : MessageLookupByLibrary.simpleMessage("未安装"),
+    "title_open_google_play" : MessageLookupByLibrary.simpleMessage("打开 Google Play"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("卸载")
   };
 }

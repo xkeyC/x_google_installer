@@ -27,7 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "c_framework_warning" : MessageLookupByLibrary.simpleMessage("Your Google Play service is incomplete!"),
     "title_about_us" : MessageLookupByLibrary.simpleMessage("About Us"),
     "title_architecture" : MessageLookupByLibrary.simpleMessage("Architecture"),
+    "title_checking_data" : MessageLookupByLibrary.simpleMessage("Checking Data..."),
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("DeviceInfo"),
+    "title_fix_google_play" : MessageLookupByLibrary.simpleMessage("Fix Google Framework"),
+    "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google Apps Status"),
+    "title_install_google_play" : MessageLookupByLibrary.simpleMessage("Install Google Framework"),
+    "title_not_install" : MessageLookupByLibrary.simpleMessage("Not Install"),
+    "title_open_google_play" : MessageLookupByLibrary.simpleMessage("Open Google Play"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("Uninstall")
   };
 }

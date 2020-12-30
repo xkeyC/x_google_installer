@@ -4,6 +4,12 @@
   "title_about_us": "About Us",
   "title_deviceInfo": "DeviceInfo",
   "title_architecture": "Architecture",
+  "title_google_apps_status": "Google Apps Status",
+  "title_not_install": "Not Install",
+  "title_checking_data": "Checking Data...",
+  "title_open_google_play": "Open Google Play",
+  "title_fix_google_play": "Fix Google Framework",
+  "title_install_google_play": "Install Google Framework",
   "c_framework_ok": "All Done! Now you can enjoy Google services.",
   "c_framework_error": "Google framework isn’t installed on your device!",
   "c_framework_warning": "Your Google Play service is incomplete!"

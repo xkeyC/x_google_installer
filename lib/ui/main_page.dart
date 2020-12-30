@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info/package_info.dart';
@@ -46,6 +48,7 @@ class _MainPageState extends State<MainPage> {
             )
           ]),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             StateBanner(status.getStatusCode()),
@@ -53,6 +56,47 @@ class _MainPageState extends State<MainPage> {
               height: 4,
             ),
             DeviceInformationBanner(),
+            GappsBanner(status),
+            Builder(builder: (BuildContext context) {
+              switch (status.getStatusCode()) {
+                case -1:
+                  return RaisedButton(
+                    child: Text(
+                      "Install Google Framework",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {},
+                  );
+                  break;
+                case -2:
+                  return RaisedButton(
+                    child: Text(
+                      "Fix Google Framework",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {},
+                  );
+                  break;
+                case 0:
+                  return RaisedButton(
+                    child: Text(
+                      "Open Google Play",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {
+                      LaunchApp.openApp(
+                          androidPackageName: "com.android.vending",
+                          openStore: false);
+                    },
+                  );
+                  break;
+                default:
+                  return null;
+              }
+            })
           ],
         ),
       ),
@@ -87,6 +131,108 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
+class GappsBanner extends StatefulWidget {
+  final GoogleFrameworkStatus status;
+
+  GappsBanner(this.status);
+
+  @override
+  _GappsBannerState createState() => _GappsBannerState();
+}
+
+class _GappsBannerState extends State<GappsBanner> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        child: Card(
+          elevation: 0.5,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.white70, width: 1),
+            borderRadius: BorderRadius.circular(1),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(left: 10, top: 8),
+                  child: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.google,
+                        size: 22,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        S.of(context).title_google_apps_status,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  )),
+              ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    PackageInfo info;
+                    String iconUrl;
+                    String appName;
+                    switch (index) {
+                      case 0:
+                        info = widget.status.framework;
+                        iconUrl =
+                            "https://static.clinux.co/files/google_installer/img/framework.png";
+                        appName = "Google Play Framework";
+                        break;
+                      case 1:
+                        info = widget.status.service;
+                        iconUrl =
+                            "https://static.clinux.co/files/google_installer/img/service.png";
+                        appName = "Google Play Services";
+                        break;
+                      case 2:
+                        info = widget.status.store;
+                        iconUrl =
+                            "https://static.clinux.co/files/google_installer/img/play.png";
+                        appName = "Google Play Store";
+                        break;
+                      default:
+                        info = null;
+                    }
+
+                    if (info == null) {
+                      return ListTile(
+                        title: Text(appName),
+                        subtitle: Text(S.of(context).title_not_install),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: CachedNetworkImage(
+                            imageUrl: iconUrl,
+                          ),
+                        ),
+                      );
+                    }
+
+                    return ListTile(
+                      title: Text(info.appName),
+                      subtitle: Text("${info.version}  (${info.buildNumber})"),
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: CachedNetworkImage(
+                          imageUrl: iconUrl,
+                        ),
+                      ),
+                    );
+                  })
+            ],
+          ),
+        ));
+  }
+}
+
 class DeviceInformationBanner extends StatefulWidget {
   @override
   _DeviceInformationBannerState createState() =>
@@ -108,7 +254,7 @@ class _DeviceInformationBannerState extends State<DeviceInformationBanner> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-                padding: EdgeInsets.only(left: 10, top: 4, bottom: 10),
+                padding: EdgeInsets.only(left: 10, top: 8, bottom: 10),
                 child: Row(
                   children: [
                     Icon(
@@ -190,7 +336,9 @@ Widget makeDeviceInfoRow(
     BuildContext context, Widget icon, String title, String subtitle,
     {double subtitleSize = 13}) {
   return Padding(
-    padding: EdgeInsets.only(left: 10, right: 10),
+    padding: EdgeInsets.only(
+        left: MediaQuery.of(context).size.width * 0.03,
+        right: MediaQuery.of(context).size.width * 0.03),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [

@@ -10,10 +10,15 @@ import 'api.dart';
 
 class AppConf {
   static IndexData _indexData;
+  static NetworkGappsInfo _networkGappsInfo;
   static AndroidDeviceInfo _androidDeviceInfo;
 
   static AndroidDeviceInfo get androidDeviceInfo {
     return _androidDeviceInfo;
+  }
+
+  static NetworkGappsInfo get networkGappsInfo {
+    return _networkGappsInfo;
   }
 
   static Future<int> initData() async {
@@ -26,18 +31,35 @@ class AppConf {
     await Hive.initFlutter();
     var box = await Hive.openBox('appConfig');
     final lastUpdate = box.get("lastUpdate");
-    var savedData = box.get("index.json");
+    final savedIndexData = box.get("index.json");
+    final savedNetworkGappsInfo =
+        box.get("conf_${_androidDeviceInfo.version.sdkInt}.json");
     if (lastUpdate == null ||
-        savedData == null ||
-        DateTime.now().add(Duration(days: -1)).millisecondsSinceEpoch > lastUpdate) {
+        savedIndexData == null ||
+        savedNetworkGappsInfo == null ||
+        DateTime.now().add(Duration(days: -1)).millisecondsSinceEpoch >
+            lastUpdate) {
       print("getting...");
-      String jsonString = await Api.getIndexData();
-      box.put("index.json", jsonString);
+      String indexJsonString;
+      try {
+        indexJsonString = await Api.getIndexData();
+      } catch (_) {
+        return null;
+      }
+      String netJsonString =
+          await Api.getNetworkGappsInfo(_androidDeviceInfo.version.sdkInt);
+      box.put("index.json", indexJsonString);
       box.put("lastUpdate", DateTime.now().millisecondsSinceEpoch);
-      _indexData = IndexData.formJson(jsonString);
+      if (netJsonString != null) {
+        box.put(
+            "conf_${_androidDeviceInfo.version.sdkInt}.json", netJsonString);
+        _networkGappsInfo = NetworkGappsInfo.formJson(netJsonString);
+      }
+      _indexData = IndexData.formJson(indexJsonString);
       return 1;
     } else {
-      _indexData = IndexData.formJson(savedData);
+      _indexData = IndexData.formJson(savedIndexData);
+      _networkGappsInfo = NetworkGappsInfo.formJson(savedNetworkGappsInfo);
       return 0;
     }
   }

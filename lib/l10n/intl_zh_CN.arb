@@ -4,6 +4,12 @@
   "title_about_us": "关于我们",
   "title_deviceInfo": "设备信息",
   "title_architecture": "处理器架构",
+  "title_google_apps_status": "Google 应用状态",
+  "title_not_install": "未安装",
+  "title_checking_data": "正在核对信息...",
+  "title_open_google_play": "打开 Google Play",
+  "title_fix_google": "修复 Google Framework",
+  "title_install_google": "安装 Google Framework",
   "c_framework_ok": "全部OK！现在，您可以在您的设备上享受 Google Play 服务！",
   "c_framework_error": "啊嘞！您的设备还没有安装 Google Play 服务。",
   "c_framework_warning": "道友请留步！您设备的 Google Play 不完整。"

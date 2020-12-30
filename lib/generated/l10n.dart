@@ -85,6 +85,66 @@ class S {
     );
   }
 
+  /// `Google Apps Status`
+  String get title_google_apps_status {
+    return Intl.message(
+      'Google Apps Status',
+      name: 'title_google_apps_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not Install`
+  String get title_not_install {
+    return Intl.message(
+      'Not Install',
+      name: 'title_not_install',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checking Data...`
+  String get title_checking_data {
+    return Intl.message(
+      'Checking Data...',
+      name: 'title_checking_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Google Play`
+  String get title_open_google_play {
+    return Intl.message(
+      'Open Google Play',
+      name: 'title_open_google_play',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fix Google Framework`
+  String get title_fix_google_play {
+    return Intl.message(
+      'Fix Google Framework',
+      name: 'title_fix_google_play',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Install Google Framework`
+  String get title_install_google_play {
+    return Intl.message(
+      'Install Google Framework',
+      name: 'title_install_google_play',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All Done! Now you can enjoy Google services.`
   String get c_framework_ok {
     return Intl.message(
