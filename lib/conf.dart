@@ -21,6 +21,7 @@ class AppConf {
     return _networkGappsInfo;
   }
 
+
   static Future<int> initData() async {
     if (Platform.isAndroid) {
       _androidDeviceInfo = await DeviceInfoPlugin().androidInfo;

@@ -19,6 +19,7 @@ dependencies:
   device_info: ^1.0.0
   cached_network_image: ^2.5.0
   external_app_launcher: ^0.0.1
+  app_installer: ^0.4.0
   package_info:
     git:
       url: https://github.com/xkeyC/plugins.git

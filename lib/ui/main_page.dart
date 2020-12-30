@@ -7,6 +7,7 @@ import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
 import '../conf.dart';
+import 'install_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -27,7 +28,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: getAppBackGroundColor(context),
+      backgroundColor: getPageBackground(context),
       appBar: makeAppBar(context,
           title: Text(
             "X Google Installer",
@@ -66,7 +67,12 @@ class _MainPageState extends State<MainPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     color: Colors.blue,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return InstallPage();
+                      }));
+                    },
                   );
                   break;
                 case -2:
@@ -76,7 +82,14 @@ class _MainPageState extends State<MainPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     color: Colors.blue,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return InstallPage(
+                          fixMode: true,
+                        );
+                      }));
+                    },
                   );
                   break;
                 case 0:
@@ -322,6 +335,7 @@ class GoogleFrameworkStatus {
   GoogleFrameworkStatus(this.framework, this.service, this.store);
 
   int getStatusCode() {
+    return -1;
     if (framework == null && service == null && store == null) {
       return -1;
     }
