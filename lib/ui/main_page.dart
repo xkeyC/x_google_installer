@@ -138,15 +138,15 @@ class _DeviceInformationBannerState extends State<DeviceInformationBanner> {
                     "Android${AppConf.androidDeviceInfo.version.release}",
                     "Sdk${AppConf.androidDeviceInfo.version.sdkInt}"),
                 makeDeviceInfoRow(
-                    context,
-                    Icon(
-                      Icons.developer_board,
-                      size: 32,
-                      color: Colors.black,
-                    ),
-                    S.of(context).title_architecture,
-                    "${AppConf.androidDeviceInfo.supportedAbis.toString().replaceAll("[", "").replaceAll("]", "")}",
-                    subtitleSize: 8),
+                  context,
+                  Icon(
+                    Icons.developer_board,
+                    size: 32,
+                    color: Colors.black,
+                  ),
+                  S.of(context).title_architecture,
+                  "${AppConf.androidDeviceInfo.supportedAbis[0]}",
+                ),
                 makeDeviceInfoRow(
                     context,
                     Icon(
@@ -159,7 +159,7 @@ class _DeviceInformationBannerState extends State<DeviceInformationBanner> {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             )
           ],
         ),
@@ -199,17 +199,12 @@ Widget makeDeviceInfoRow(
           title,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
-          height: 12,
-          child: Center(
-            child: Text(
-              subtitle,
-              style: TextStyle(
-                  fontSize: subtitleSize,
-                  color: Colors.black.withAlpha(120),
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
+        Text(
+          subtitle,
+          style: TextStyle(
+              fontSize: subtitleSize,
+              color: Colors.black.withAlpha(120),
+              fontWeight: FontWeight.bold),
         )
       ],
     ),
