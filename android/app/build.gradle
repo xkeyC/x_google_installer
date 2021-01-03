@@ -37,8 +37,8 @@ android {
         applicationId "co.clinux.googleinstaller"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 202001041
+        versionName "0.1 beta"
     }
 
     buildTypes {
