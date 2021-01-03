@@ -34,8 +34,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_fix_google_play" : MessageLookupByLibrary.simpleMessage("Fix Google Framework"),
     "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google Apps Status"),
     "title_install_google_play" : MessageLookupByLibrary.simpleMessage("Install Google Framework"),
+    "title_install_with_browser" : MessageLookupByLibrary.simpleMessage("Install with browser"),
     "title_not_install" : MessageLookupByLibrary.simpleMessage("Not Install"),
     "title_open_google_play" : MessageLookupByLibrary.simpleMessage("Open Google Play"),
-    "title_uninstall" : MessageLookupByLibrary.simpleMessage("Uninstall")
+    "title_skip" : MessageLookupByLibrary.simpleMessage("Skip"),
+    "title_start_install" : MessageLookupByLibrary.simpleMessage("Install"),
+    "title_uninstall" : MessageLookupByLibrary.simpleMessage("Uninstall"),
+    "title_use_default" : MessageLookupByLibrary.simpleMessage("Use Default")
   };
 }

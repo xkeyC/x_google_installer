@@ -196,6 +196,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_browser:
+    dependency: "direct main"
+    description:
+      name: flutter_web_browser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.1"
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -337,10 +344,10 @@ packages:
     description:
       path: "packages/package_info"
       ref: HEAD
-      resolved-ref: ef0200707c9682283affc02588001ac36bfd2af0
+      resolved-ref: "66b63db7e03b0c3a05561341b5b63a35be4356e2"
       url: "https://github.com/xkeyC/plugins.git"
     source: git
-    version: "0.4.3+3"
+    version: "0.4.4"
   path:
     dependency: transitive
     description:
@@ -410,7 +417,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0-nullsafety.1"
+    version: "1.0.3"
   pool:
     dependency: transitive
     description:

@@ -10,9 +10,13 @@
   "title_open_google_play": "打开 Google Play",
   "title_fix_google": "修复 Google 框架",
   "title_install_google": "安装 Google 框架",
+  "title_skip": "跳过",
+  "title_use_default": "使用默认配置",
+  "title_start_install": "开始安装",
+  "title_install_with_browser": "使用浏览器下载安装",
   "c_framework_ok": "全部OK！现在，您可以在您的设备上享受 Google Play 服务！",
   "c_framework_error": "啊嘞！您的设备还没有安装 Google Play 服务。",
   "c_framework_warning": "道友请留步！您设备的 Google Play 不完整。",
-  "c_tip_framework_install": "注意：\n安装完毕后请前往应用设置，务必授权以下权限：\n自启动权限（部分设备） \n读取手机状态（信息）权限 \n在后台弹出窗口权限。（部分设备）\n另外，MIUI12用户请注意将该应用的空白通行证关闭。",
-  "c_tip_store_install": "注意：\n安装完毕后请前往应用设置，务必授权以下权限：\n读取手机状态（信息）权限 \n在后台弹出窗口权限。（部分设备）\n另外，MIUI12用户请注意将该应用的空白通行证关闭。"
+  "c_tip_framework_install": "注意：\n\n·安装完毕后请前往应用设置，务必授权以下权限：\n\n·自启动权限（部分设备） \n\n·读取手机状态（信息）权限 \n\n·在后台弹出窗口权限。（部分设备）\n\n·另外，MIUI12用户请注意将该应用的空白通行证关闭。",
+  "c_tip_store_install": "注意：\n安装完毕后请前往应用设置，务必授权以下权限：\n\n·读取手机状态（信息）权限 \n\n·在后台弹出窗口权限。（部分设备）\n\n·另外，MIUI12用户请注意将该应用的空白通行证关闭。"
 }

@@ -20,6 +20,7 @@ dependencies:
   cached_network_image: ^2.5.0
   external_app_launcher: ^0.0.1
   app_installer: ^0.4.0
+  flutter_web_browser: ^0.13.1
   package_info:
     git:
       url: https://github.com/xkeyC/plugins.git

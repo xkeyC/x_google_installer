@@ -145,6 +145,46 @@ class S {
     );
   }
 
+  /// `Skip`
+  String get title_skip {
+    return Intl.message(
+      'Skip',
+      name: 'title_skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Default`
+  String get title_use_default {
+    return Intl.message(
+      'Use Default',
+      name: 'title_use_default',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Install`
+  String get title_start_install {
+    return Intl.message(
+      'Install',
+      name: 'title_start_install',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Install with browser`
+  String get title_install_with_browser {
+    return Intl.message(
+      'Install with browser',
+      name: 'title_install_with_browser',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All Done! Now you can enjoy Google services.`
   String get c_framework_ok {
     return Intl.message(

@@ -58,6 +58,9 @@ class _MainPageState extends State<MainPage> {
             ),
             DeviceInformationBanner(),
             GappsBanner(status),
+            SizedBox(
+              height: 10,
+            ),
             Builder(builder: (BuildContext context) {
               switch (status.getStatusCode()) {
                 case -1:
