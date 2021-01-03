@@ -86,20 +86,26 @@ class IndexData {
     Map f = m["f"];
     Map<int, ApkData> framework = {};
     f.keys.forEach((id) {
-      framework.addAll(
-          {int.parse(id): ApkData.formMapAndIndex(int.parse(id), f[id])});
+      framework.addAll({
+        int.parse(id): ApkData.formMapAndIndex(
+            int.parse(id), f[id], "com.google.android.gsf")
+      });
     });
     Map s = m["s"];
     Map<int, ApkData> services = {};
     s.keys.forEach((id) {
-      services.addAll(
-          {int.parse(id): ApkData.formMapAndIndex(int.parse(id), s[id])});
+      services.addAll({
+        int.parse(id): ApkData.formMapAndIndex(
+            int.parse(id), s[id], "com.google.android.gms")
+      });
     });
     Map st = m["st"];
     Map<int, ApkData> store = {};
     st.keys.forEach((id) {
-      store.addAll(
-          {int.parse(id): ApkData.formMapAndIndex(int.parse(id), st[id])});
+      store.addAll({
+        int.parse(id): ApkData.formMapAndIndex(
+            int.parse(id), st[id], "com.android.vending")
+      });
     });
     return IndexData(
         m["app_version"], m["url_path"], framework, services, store);
@@ -109,14 +115,17 @@ class IndexData {
 class ApkData {
   int versionCode;
   String versionName;
+  String packageName;
   int minApi;
   String url;
   String note;
 
-  ApkData(this.versionCode, this.versionName, this.minApi, this.url, this.note);
+  ApkData(this.versionCode, this.versionName, this.packageName, this.minApi,
+      this.url, this.note);
 
-  factory ApkData.formMapAndIndex(int index, Map m) {
-    return ApkData(index, m["version_name"], m["min_api"], m["url"], m["note"]);
+  factory ApkData.formMapAndIndex(int index, Map m, String packageName) {
+    return ApkData(index, m["version_name"], packageName, m["min_api"],
+        m["url"], m["note"]);
   }
 }
 
