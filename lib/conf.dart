@@ -13,6 +13,10 @@ class AppConf {
   static NetworkGappsInfo _networkGappsInfo;
   static AndroidDeviceInfo _androidDeviceInfo;
 
+  static IndexData get gappsIndex {
+    return _indexData;
+  }
+
   static AndroidDeviceInfo get androidDeviceInfo {
     return _androidDeviceInfo;
   }
@@ -54,6 +58,8 @@ class AppConf {
         box.put(
             "conf_${_androidDeviceInfo.version.sdkInt}.json", netJsonString);
         _networkGappsInfo = NetworkGappsInfo.formJson(netJsonString);
+      } else {
+        _networkGappsInfo = NetworkGappsInfo(-1, -1, -1);
       }
       _indexData = IndexData.formJson(indexJsonString);
       return 1;
@@ -68,16 +74,35 @@ class AppConf {
 class IndexData {
   int appVersion;
   String urlPath;
-  Map framework;
-  Map services;
-  Map store;
+  Map<int, ApkData> framework;
+  Map<int, ApkData> services;
+  Map<int, ApkData> store;
 
   IndexData(
       this.appVersion, this.urlPath, this.framework, this.services, this.store);
 
   factory IndexData.formJson(String jsonString) {
     Map m = json.decode(jsonString);
-    return IndexData(m["app_version"], m["url_path"], m["f"], m["s"], m["st"]);
+    Map f = m["f"];
+    Map<int, ApkData> framework = {};
+    f.keys.forEach((id) {
+      framework.addAll(
+          {int.parse(id): ApkData.formMapAndIndex(int.parse(id), f[id])});
+    });
+    Map s = m["s"];
+    Map<int, ApkData> services = {};
+    s.keys.forEach((id) {
+      services.addAll(
+          {int.parse(id): ApkData.formMapAndIndex(int.parse(id), s[id])});
+    });
+    Map st = m["st"];
+    Map<int, ApkData> store = {};
+    st.keys.forEach((id) {
+      store.addAll(
+          {int.parse(id): ApkData.formMapAndIndex(int.parse(id), st[id])});
+    });
+    return IndexData(
+        m["app_version"], m["url_path"], framework, services, store);
   }
 }
 
