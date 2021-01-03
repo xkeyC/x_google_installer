@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("设备信息"),
     "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google 应用状态"),
     "title_install_with_browser" : MessageLookupByLibrary.simpleMessage("使用浏览器下载安装"),
+    "title_next" : MessageLookupByLibrary.simpleMessage("下一步"),
     "title_not_install" : MessageLookupByLibrary.simpleMessage("未安装"),
     "title_open_google_play" : MessageLookupByLibrary.simpleMessage("打开 Google Play"),
     "title_skip" : MessageLookupByLibrary.simpleMessage("跳过"),

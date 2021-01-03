@@ -155,6 +155,16 @@ class S {
     );
   }
 
+  /// `Next`
+  String get title_next {
+    return Intl.message(
+      'Next',
+      name: 'title_next',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Use Default`
   String get title_use_default {
     return Intl.message(

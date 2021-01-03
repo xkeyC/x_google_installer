@@ -19,8 +19,11 @@ dependencies:
   device_info: ^1.0.0
   cached_network_image: ^2.5.0
   external_app_launcher: ^0.0.1
-  app_installer: ^0.4.0
+  app_installer:
+    git:
+      url: https://github.com/xkeyC/app_installer.git
   flutter_web_browser: ^0.13.1
+  path_provider: ^1.6.24
   package_info:
     git:
       url: https://github.com/xkeyC/plugins.git

@@ -1,7 +1,14 @@
+import 'dart:io';
+
+import 'package:app_installer/app_installer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:package_info/package_info.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
@@ -79,11 +86,20 @@ class _AppInfoPage extends StatefulWidget {
   __AppInfoPageState createState() => __AppInfoPageState();
 }
 
-class __AppInfoPageState extends State<_AppInfoPage> {
+class __AppInfoPageState extends State<_AppInfoPage>
+    with WidgetsBindingObserver {
   int value;
+
+  PackageInfo packageInfo;
+
+  bool isDownloading = false;
+  double downloadProgress = 0.0;
+
+  Dio _dio = Dio();
 
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     widget.apkData.forEach((id, apk) {
       if (AppConf.androidDeviceInfo.version.sdkInt < apk.minApi) {
         widget.apkData.remove(id);
@@ -91,8 +107,88 @@ class __AppInfoPageState extends State<_AppInfoPage> {
     });
 
     value = widget.networkGappsVersion;
-
+    updatePackageInfo();
     super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (AppLifecycleState.resumed == state) {
+      updatePackageInfo();
+    }
+    super.didChangeAppLifecycleState(state);
+  }
+
+  void updatePackageInfo() async {
+    if (value != -1 && widget.apkData.length != 0) {
+      try {
+        packageInfo = await PackageInfo.fromPlatformByPackageName(
+            widget.apkData[value].packageName);
+        setState(() {});
+      } catch (_) {}
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  void downloadFile() async {
+    final apkData = widget.apkData[value];
+    final path = (await getExternalStorageDirectory()).path +
+        "/apk/${apkData.packageName}_${apkData.versionName}.apk";
+    if (await File(path).exists()) {
+      installApk(path);
+      return;
+    }
+    setState(() {
+      isDownloading = true;
+    });
+    final dPath = path + ".download";
+    _dio.download(apkData.url, dPath,
+        onReceiveProgress: (int count, int total) {
+      setState(() {
+        downloadProgress = (count.toDouble() / total);
+      });
+    }).then((r) async {
+      print(r);
+      final downloadedFile = File(dPath);
+      if (!await downloadedFile.exists()) {
+        print("file not found");
+        return;
+      }
+      await downloadedFile.rename(path);
+      setState(() {
+        isDownloading = false;
+      });
+      installApk(path);
+    }).catchError((err) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("ERROR"),
+              content: Text(err.toString()),
+              actions: [
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("ok"),
+                )
+              ],
+            );
+          });
+      setState(() {
+        isDownloading = false;
+      });
+    });
+  }
+
+  void installApk(String filePath) {
+    AppInstaller.installApk(filePath);
   }
 
   @override
@@ -144,7 +240,8 @@ class __AppInfoPageState extends State<_AppInfoPage> {
                     color: Theme.of(context).textTheme.headline6.color),
                 value: value,
                 items: list,
-                onChanged: (value) {
+                onChanged: (value) async {
+                  updatePackageInfo();
                   setState(() {
                     this.value = value;
                   });
@@ -220,17 +317,88 @@ class __AppInfoPageState extends State<_AppInfoPage> {
                 tooltip: S.of(context).title_use_default,
               ),
               SizedBox(
-                width: 160,
-                child: RaisedButton(
-                  color: Colors.blue,
-                  onPressed: () {
-                    if (value == -1) {
-                      widget.pageGo(1);
+                width: isDownloading ? 120 : 120,
+                child: Builder(
+                  builder: (BuildContext context) {
+                    if (isDownloading) {
+                      return Stack(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(0),
+                            child: Card(
+                              elevation: 3,
+                              child: SizedBox(
+                                height: 36,
+                                width: 140,
+                                child: LinearProgressIndicator(
+                                  backgroundColor: Colors.white,
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.blue),
+                                  value: downloadProgress,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 0,
+                            bottom: 0,
+                            child: Center(
+                              child: SizedBox(
+                                width: 120,
+                                child: Text(
+                                  "${(downloadProgress * 100).toStringAsFixed(2)}%",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: downloadProgress < 0.5
+                                          ? Colors.black
+                                          : Colors.white),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      );
                     }
+
+                    if (packageInfo == null || value == -1) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: 4, right: 4),
+                        child: RaisedButton(
+                          color: Colors.blue,
+                          onPressed: () {
+                            if (value == -1) {
+                              widget.pageGo(1);
+                              return;
+                            }
+                            downloadFile();
+                          },
+                          child: Text(value == -1
+                              ? S.of(context).title_skip
+                              : S.of(context).title_start_install),
+                        ),
+                      );
+                    }
+
+                    bool ok = int.parse(packageInfo.buildNumber) >=
+                        widget.apkData[value].versionCode;
+
+                    return Padding(
+                      padding: EdgeInsets.only(left: 4, right: 4),
+                      child: RaisedButton(
+                        color: Colors.blue,
+                        onPressed: () {
+                          if (ok) {
+                            widget.pageGo(1);
+                            return;
+                          }
+                          downloadFile();
+                        },
+                        child: Text(ok
+                            ? S.of(context).title_next
+                            : S.of(context).title_start_install),
+                      ),
+                    );
                   },
-                  child: Text(value == -1
-                      ? S.of(context).title_skip
-                      : S.of(context).title_start_install),
                 ),
               ),
               FloatingActionButton(

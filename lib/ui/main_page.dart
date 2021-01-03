@@ -16,13 +16,29 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   GoogleFrameworkStatus status = GoogleFrameworkStatus(null, null, null);
 
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     checkState();
     super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (AppLifecycleState.resumed == state) {
+      checkState();
+    }
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
+    super.dispose();
   }
 
   @override
@@ -335,8 +351,6 @@ class GoogleFrameworkStatus {
   GoogleFrameworkStatus(this.framework, this.service, this.store);
 
   int getStatusCode() {
-    /// DEBUG
-    return -1;
     if (framework == null && service == null && store == null) {
       return -1;
     }
