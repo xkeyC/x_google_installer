@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:app_installer/app_installer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -58,6 +57,7 @@ class _InstallPageState extends State<InstallPage> {
               S.of(context).c_tip_store_install,
               AppConf.networkGappsInfo.store,
               pageGo: goPage),
+          InstalledPage(),
         ],
       ),
     );
@@ -66,6 +66,21 @@ class _InstallPageState extends State<InstallPage> {
   void goPage(int i) {
     controller.animateToPage(controller.page.toInt() + i,
         duration: Duration(seconds: 1), curve: Curves.easeOutQuint);
+  }
+}
+
+class InstalledPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: FlatButton(
+        onPressed: () { Navigator.pop(context); },
+        child: Text(
+          "All Done",
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+    );
   }
 }
 
