@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "c_framework_error" : MessageLookupByLibrary.simpleMessage("Google framework isn’t installed on your device!"),
     "c_framework_ok" : MessageLookupByLibrary.simpleMessage("All Done! Now you can enjoy Google services."),
     "c_framework_warning" : MessageLookupByLibrary.simpleMessage("Your Google Play service is incomplete!"),
+    "c_tip_framework_install" : MessageLookupByLibrary.simpleMessage("NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Self-starting permission (some devices)\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application."),
+    "c_tip_store_install" : MessageLookupByLibrary.simpleMessage("NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application."),
     "title_about_us" : MessageLookupByLibrary.simpleMessage("About Us"),
     "title_architecture" : MessageLookupByLibrary.simpleMessage("Architecture"),
     "title_checking_data" : MessageLookupByLibrary.simpleMessage("Checking Data..."),

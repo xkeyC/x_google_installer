@@ -21,7 +21,6 @@ class AppConf {
     return _networkGappsInfo;
   }
 
-
   static Future<int> initData() async {
     if (Platform.isAndroid) {
       _androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
@@ -94,4 +93,13 @@ class ApkData {
   factory ApkData.formMapAndIndex(int index, Map m) {
     return ApkData(index, m["version_name"], m["min_api"], m["url"], m["note"]);
   }
+}
+
+class NetworkImagesIndex {
+  static const String gappFramework =
+      "https://static.clinux.co/files/google_installer/img/framework.png";
+  static const String gappService =
+      "https://static.clinux.co/files/google_installer/img/service.png";
+  static const String gappStore =
+      "https://static.clinux.co/files/google_installer/img/play.png";
 }

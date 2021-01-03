@@ -12,5 +12,8 @@
   "title_install_google_play": "Install Google Framework",
   "c_framework_ok": "All Done! Now you can enjoy Google services.",
   "c_framework_error": "Google framework isn’t installed on your device!",
-  "c_framework_warning": "Your Google Play service is incomplete!"
+  "c_framework_warning": "Your Google Play service is incomplete!",
+  "c_tip_framework_install": "NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Self-starting permission (some devices)\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application.",
+  "c_tip_store_install": "NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application."
+
 }

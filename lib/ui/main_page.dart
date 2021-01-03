@@ -196,20 +196,17 @@ class _GappsBannerState extends State<GappsBanner> {
                     switch (index) {
                       case 0:
                         info = widget.status.framework;
-                        iconUrl =
-                            "https://static.clinux.co/files/google_installer/img/framework.png";
+                        iconUrl = NetworkImagesIndex.gappFramework;
                         appName = "Google Play Framework";
                         break;
                       case 1:
                         info = widget.status.service;
-                        iconUrl =
-                            "https://static.clinux.co/files/google_installer/img/service.png";
+                        iconUrl = NetworkImagesIndex.gappService;
                         appName = "Google Play Services";
                         break;
                       case 2:
                         info = widget.status.store;
-                        iconUrl =
-                            "https://static.clinux.co/files/google_installer/img/play.png";
+                        iconUrl = NetworkImagesIndex.gappStore;
                         appName = "Google Play Store";
                         break;
                       default:
@@ -335,6 +332,7 @@ class GoogleFrameworkStatus {
   GoogleFrameworkStatus(this.framework, this.service, this.store);
 
   int getStatusCode() {
+    /// DEBUG
     return -1;
     if (framework == null && service == null && store == null) {
       return -1;
