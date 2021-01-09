@@ -25,7 +25,7 @@ class AppConf {
     return _networkGappsInfo;
   }
 
-  static Future<int> initData() async {
+  static Future<int> initData({bool enforce = false}) async {
     if (Platform.isAndroid) {
       _androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
     } else {
@@ -41,9 +41,9 @@ class AppConf {
     if (lastUpdate == null ||
         savedIndexData == null ||
         savedNetworkGappsInfo == null ||
-        DateTime.now().add(Duration(days: -1)).millisecondsSinceEpoch >
-            lastUpdate) {
-      print("getting...");
+        DateTime.now().add(Duration(hours: -1)).millisecondsSinceEpoch >
+            lastUpdate ||
+        enforce) {
       String indexJsonString;
       try {
         indexJsonString = await Api.getIndexData();

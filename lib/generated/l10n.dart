@@ -126,30 +126,40 @@ class S {
   }
 
   /// `Open Google Play`
-  String get title_open_google_play {
+  String get title_open_google {
     return Intl.message(
       'Open Google Play',
-      name: 'title_open_google_play',
+      name: 'title_open_google',
       desc: '',
       args: [],
     );
   }
 
   /// `Fix Google Framework`
-  String get title_fix_google_play {
+  String get title_fix_google {
     return Intl.message(
       'Fix Google Framework',
-      name: 'title_fix_google_play',
+      name: 'title_fix_google',
       desc: '',
       args: [],
     );
   }
 
   /// `Install Google Framework`
-  String get title_install_google_play {
+  String get title_install_google {
     return Intl.message(
       'Install Google Framework',
-      name: 'title_install_google_play',
+      name: 'title_install_google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade Google Framework`
+  String get title_upgrade_google {
+    return Intl.message(
+      'Upgrade Google Framework',
+      name: 'title_upgrade_google',
       desc: '',
       args: [],
     );
@@ -235,6 +245,16 @@ class S {
     );
   }
 
+  /// `Retry`
+  String get title_retry {
+    return Intl.message(
+      'Retry',
+      name: 'title_retry',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sorry, your Google framework is a system application and we cannot uninstall it for you.`
   String get c_framework_is_system_app {
     return Intl.message(
@@ -310,6 +330,16 @@ class S {
     return Intl.message(
       'NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications.',
       name: 'c_tip_installed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to connect to the clinux.co server.`
+  String get c_err_connect_server {
+    return Intl.message(
+      'Failed to connect to the clinux.co server.',
+      name: 'c_err_connect_server',
       desc: '',
       args: [],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/main_page.dart';
@@ -40,7 +41,38 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       }
     });
 
+    initData();
+
+    super.initState();
+  }
+
+  void initData() {
     AppConf.initData().then((code) async {
+      if (code == null) {
+        showDialog(
+            context: _scaffold.currentContext,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(S.of(context).title_error),
+                content: Text(S.of(context).c_err_connect_server),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        initData();
+                      },
+                      child: Text(S.of(context).title_retry)),
+                  TextButton(
+                      onPressed: () {
+                        SystemChannels.platform
+                            .invokeMethod('SystemNavigator.pop');
+                      },
+                      child: Text("ok")),
+                ],
+              );
+            });
+      }
+
       int waitTime = 1000;
       if (code == 1) {
         flutterLogoDuration = 1000;
@@ -64,7 +96,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       await Future.delayed(Duration(milliseconds: waitTime));
       _goNext();
     });
-    super.initState();
   }
 
   _goNext() {

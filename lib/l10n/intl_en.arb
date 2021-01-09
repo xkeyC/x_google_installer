@@ -8,9 +8,10 @@
   "title_google_apps_status": "Google Apps Status",
   "title_not_install": "Not Install",
   "title_checking_data": "Checking Data...",
-  "title_open_google_play": "Open Google Play",
-  "title_fix_google_play": "Fix Google Framework",
-  "title_install_google_play": "Install Google Framework",
+  "title_open_google": "Open Google Play",
+  "title_fix_google": "Fix Google Framework",
+  "title_install_google": "Install Google Framework",
+  "title_upgrade_google": "Upgrade Google Framework",
   "title_skip": "Skip",
   "title_next": "Next",
   "title_use_default": "Use Default",
@@ -19,6 +20,7 @@
   "title_all_done": "All Done",
   "title_error": "Error",
   "title_enforce_continue": "Enforce",
+  "title_retry": "Retry",
   "c_framework_is_system_app": "Sorry, your Google framework is a system application and we cannot uninstall it for you.",
   "c_framework_ok": "All Done! Now you can enjoy Google services.",
   "c_framework_error": "Google framework isn’t installed on your device!",
@@ -26,5 +28,6 @@
   "c_framework_update": "A new version of your Google Framework is available!",
   "c_tip_framework_install": "NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Self-starting permission (some devices)\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application.",
   "c_tip_store_install": "NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application.",
-  "c_tip_installed": "NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications."
+  "c_tip_installed": "NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications.",
+  "c_err_connect_server": "Failed to connect to the clinux.co server."
 }

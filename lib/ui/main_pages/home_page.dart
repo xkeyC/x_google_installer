@@ -96,9 +96,30 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: getPageBackground(context),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          final code = await AppConf.initData(enforce: true);
+          if (code == null) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(S.of(context).title_error),
+                    content: Text(S.of(context).c_err_connect_server),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("ok")),
+                    ],
+                  );
+                });
+            return;
+          }
+          checkState();
+        },
+        child: ListView(
           children: [
             StateBanner(status.getStatusCode()),
             SizedBox(
@@ -107,68 +128,51 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             DeviceInformationBanner(),
             GappsBanner(status),
             SizedBox(
-              height: 10,
-            ),
-            Builder(builder: (BuildContext context) {
-              switch (status.getStatusCode()) {
-                case -1:
-                  return ElevatedButton(
+              child: Builder(builder: (BuildContext context) {
+                String text;
+
+                switch (status.getStatusCode()) {
+                  case -1:
+                    text = S.of(context).title_install_google;
+                    break;
+                  case -2:
+                    text = S.of(context).title_fix_google;
+                    break;
+                  case 0:
+                    text = S.of(context).title_open_google;
+                    break;
+                  case 1:
+                    text = S.of(context).title_upgrade_google;
+                    break;
+                  default:
+                    break;
+                }
+                return Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * .2,
+                      right: MediaQuery.of(context).size.width * .2),
+                  child: ElevatedButton(
                     child: Text(
-                      "Install Google Framework",
+                      text,
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return InstallPage();
-                      }));
+                      if (status.getStatusCode() < 0 ||
+                          status.getStatusCode() == 1) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return InstallPage();
+                        }));
+                      }
+                      if (status.getStatusCode() == 0) {
+                        LaunchApp.openApp(
+                            androidPackageName: "com.android.vending");
+                      }
                     },
-                  );
-                  break;
-                case -2:
-                  return ElevatedButton(
-                    child: Text(
-                      "Fix Google Framework",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return InstallPage();
-                      }));
-                    },
-                  );
-                  break;
-                case 0:
-                  return ElevatedButton(
-                    child: Text(
-                      "Open Google Play",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      LaunchApp.openApp(
-                          androidPackageName: "com.android.vending",
-                          openStore: false);
-                    },
-                  );
-                  break;
-                case 1:
-                  return ElevatedButton(
-                    child: Text(
-                      "Upgrade Google Framework",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return InstallPage();
-                      }));
-                    },
-                  );
-                default:
-                  return null;
-              }
-            })
+                  ),
+                );
+              }),
+            )
           ],
         ),
       ),
@@ -225,21 +229,25 @@ class _GappsBannerState extends State<GappsBanner> {
                     AppInfo info;
                     String iconUrl;
                     String appName;
+                    int networkVersionCode;
                     switch (index) {
                       case 0:
                         info = widget.status.framework;
                         iconUrl = NetworkImagesIndex.gappFramework;
                         appName = "Google Play Framework";
+                        networkVersionCode = AppConf.networkGappsInfo.framework;
                         break;
                       case 1:
                         info = widget.status.service;
                         iconUrl = NetworkImagesIndex.gappService;
                         appName = "Google Play Services";
+                        networkVersionCode = AppConf.networkGappsInfo.service;
                         break;
                       case 2:
                         info = widget.status.store;
                         iconUrl = NetworkImagesIndex.gappStore;
                         appName = "Google Play Store";
+                        networkVersionCode = AppConf.networkGappsInfo.store;
                         break;
                       default:
                         info = null;
@@ -255,19 +263,33 @@ class _GappsBannerState extends State<GappsBanner> {
                             imageUrl: iconUrl,
                           ),
                         ),
+                        trailing: FaIcon(
+                          FontAwesomeIcons.times,
+                          color: Colors.red,
+                        ),
                       );
                     }
 
                     return ListTile(
                       title: Text(info.name),
-                      subtitle:
-                          Text("${info.versionName}  (${info.versionCode})"),
+                      subtitle: Text(networkVersionCode > info.versionCode
+                          ? "${info.versionCode} ->>> $networkVersionCode"
+                          : "${info.versionName}  (${info.versionCode})"),
                       leading: CircleAvatar(
                         backgroundColor: Colors.white,
                         child: CachedNetworkImage(
                           imageUrl: iconUrl,
                         ),
                       ),
+                      trailing: networkVersionCode > info.versionCode
+                          ? Icon(
+                              Icons.fiber_new,
+                              color: Colors.red,
+                            )
+                          : FaIcon(
+                              FontAwesomeIcons.check,
+                              color: Colors.green,
+                            ),
                     );
                   })
             ],

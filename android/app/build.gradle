@@ -26,18 +26,19 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "co.clinux.googleinstaller"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 202001041
-        versionName "0.1 beta"
+        versionCode 202001091
+        versionName "0.2 beta"
     }
 
     buildTypes {
         release {
             /// add release signingConfig to use :
             //signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources = true
         }
     }
 }

@@ -461,20 +461,20 @@ class __AppInfoPageState extends State<_AppInfoPage>
                                         TextButton(
                                             onPressed: () {
                                               Navigator.pop(context);
-                                              setState(() {
-                                                value = -1;
-                                              });
-                                            },
-                                            child: Text("ok")),
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
                                               AppUninstaller.Uninstall(
                                                   widget.packageName);
                                             },
                                             child: Text(S
                                                 .of(context)
                                                 .title_enforce_continue)),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              setState(() {
+                                                value = -1;
+                                              });
+                                            },
+                                            child: Text("ok")),
                                       ],
                                     );
                                   });

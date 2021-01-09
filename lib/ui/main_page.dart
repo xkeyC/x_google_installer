@@ -34,7 +34,7 @@ class _MainPageState extends State<MainPage> {
               color: getTextColor(context),
             ),
             IconButton(
-              tooltip: S.of(context).title_about_us,
+              tooltip: S.of(context).title_settings,
               icon: Icon(Icons.settings),
               onPressed: () {},
               color: getTextColor(context),

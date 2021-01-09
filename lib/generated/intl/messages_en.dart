@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("en"),
+    "c_err_connect_server" : MessageLookupByLibrary.simpleMessage("Failed to connect to the clinux.co server."),
     "c_framework_error" : MessageLookupByLibrary.simpleMessage("Google framework isn’t installed on your device!"),
     "c_framework_is_system_app" : MessageLookupByLibrary.simpleMessage("Sorry, your Google framework is a system application and we cannot uninstall it for you."),
     "c_framework_ok" : MessageLookupByLibrary.simpleMessage("All Done! Now you can enjoy Google services."),
@@ -37,17 +38,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("DeviceInfo"),
     "title_enforce_continue" : MessageLookupByLibrary.simpleMessage("Enforce"),
     "title_error" : MessageLookupByLibrary.simpleMessage("Error"),
-    "title_fix_google_play" : MessageLookupByLibrary.simpleMessage("Fix Google Framework"),
+    "title_fix_google" : MessageLookupByLibrary.simpleMessage("Fix Google Framework"),
     "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google Apps Status"),
-    "title_install_google_play" : MessageLookupByLibrary.simpleMessage("Install Google Framework"),
+    "title_install_google" : MessageLookupByLibrary.simpleMessage("Install Google Framework"),
     "title_install_with_browser" : MessageLookupByLibrary.simpleMessage("Install with browser"),
     "title_next" : MessageLookupByLibrary.simpleMessage("Next"),
     "title_not_install" : MessageLookupByLibrary.simpleMessage("Not Install"),
-    "title_open_google_play" : MessageLookupByLibrary.simpleMessage("Open Google Play"),
+    "title_open_google" : MessageLookupByLibrary.simpleMessage("Open Google Play"),
+    "title_retry" : MessageLookupByLibrary.simpleMessage("Retry"),
     "title_settings" : MessageLookupByLibrary.simpleMessage("Settings"),
     "title_skip" : MessageLookupByLibrary.simpleMessage("Skip"),
     "title_start_install" : MessageLookupByLibrary.simpleMessage("Install"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("Uninstall"),
+    "title_upgrade_google" : MessageLookupByLibrary.simpleMessage("Upgrade Google Framework"),
     "title_use_default" : MessageLookupByLibrary.simpleMessage("Use Default")
   };
 }

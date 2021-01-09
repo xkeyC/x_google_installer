@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("zh_CN"),
+    "c_err_connect_server" : MessageLookupByLibrary.simpleMessage("未成功连接至 clinux.co 服务器。请检查您的网络连接，然后重试。"),
     "c_framework_error" : MessageLookupByLibrary.simpleMessage("啊嘞！您的设备还没有安装 Google Play 服务。"),
     "c_framework_is_system_app" : MessageLookupByLibrary.simpleMessage("抱歉，您的 Google 框架为系统预装应用，我们无法帮您卸载。"),
     "c_framework_ok" : MessageLookupByLibrary.simpleMessage("全部OK！现在，您可以在您的设备上享受 Google Play 服务！"),
@@ -37,15 +38,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("设备信息"),
     "title_enforce_continue" : MessageLookupByLibrary.simpleMessage("强制执行"),
     "title_error" : MessageLookupByLibrary.simpleMessage("出错了！"),
+    "title_fix_google" : MessageLookupByLibrary.simpleMessage("修复 Google 框架"),
     "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google 应用状态"),
+    "title_install_google" : MessageLookupByLibrary.simpleMessage("安装 Google 框架"),
     "title_install_with_browser" : MessageLookupByLibrary.simpleMessage("使用浏览器下载安装"),
     "title_next" : MessageLookupByLibrary.simpleMessage("下一步"),
     "title_not_install" : MessageLookupByLibrary.simpleMessage("未安装"),
-    "title_open_google_play" : MessageLookupByLibrary.simpleMessage("打开 Google Play"),
+    "title_retry" : MessageLookupByLibrary.simpleMessage("重试"),
     "title_settings" : MessageLookupByLibrary.simpleMessage("设置"),
     "title_skip" : MessageLookupByLibrary.simpleMessage("跳过"),
     "title_start_install" : MessageLookupByLibrary.simpleMessage("开始安装"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("卸载"),
+    "title_upgrade_google" : MessageLookupByLibrary.simpleMessage("升级 Google 框架"),
     "title_use_default" : MessageLookupByLibrary.simpleMessage("使用默认配置")
   };
 }
