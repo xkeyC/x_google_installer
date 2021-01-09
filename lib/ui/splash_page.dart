@@ -135,12 +135,15 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                 ],
               ),
               bottomNavigationBar: SizedBox(
-                  height: 20,
+                  height: 40,
                   width: MediaQuery.of(context).size.width,
-                  child: Center(
-                    child: Text(showPowerByText
-                        ? "clinux.co Open Source Project"
-                        : S.of(context).title_checking_data),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Center(
+                      child: Text(showPowerByText
+                          ? "clinux.co Open Source Project"
+                          : S.of(context).title_checking_data),
+                    ),
                   )));
         },
       ),

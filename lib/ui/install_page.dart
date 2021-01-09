@@ -6,7 +6,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:package_info/package_info.dart';
+import 'package:installed_apps/app_info.dart';
+import 'package:installed_apps/installed_apps.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/widgets.dart';
@@ -16,9 +17,9 @@ import '../conf.dart';
 typedef PageGo = void Function(int);
 
 class InstallPage extends StatefulWidget {
-  final bool fixMode;
+  final bool unInstallMode;
 
-  InstallPage({Key key, this.fixMode = false}) : super(key: key);
+  InstallPage({Key key, this.unInstallMode = false}) : super(key: key);
 
   @override
   _InstallPageState createState() => _InstallPageState();
@@ -73,11 +74,32 @@ class InstalledPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FlatButton(
-        onPressed: () { Navigator.pop(context); },
-        child: Text(
-          "All Done",
-          style: TextStyle(fontSize: 18),
+      child: TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "All Done",
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(S.of(context).c_tip_installed),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -105,7 +127,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
     with WidgetsBindingObserver {
   int value;
 
-  PackageInfo packageInfo;
+  AppInfo packageInfo;
 
   bool isDownloading = false;
   double downloadProgress = 0.0;
@@ -137,8 +159,8 @@ class __AppInfoPageState extends State<_AppInfoPage>
   void updatePackageInfo() async {
     if (value != -1 && widget.apkData.length != 0) {
       try {
-        packageInfo = await PackageInfo.fromPlatformByPackageName(
-            widget.apkData[value].packageName);
+        packageInfo =
+            await InstalledApps.getAppInfo(widget.apkData[value].packageName);
         setState(() {});
       } catch (_) {}
     }
@@ -187,7 +209,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
               title: Text("ERROR"),
               content: Text(err.toString()),
               actions: [
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -378,8 +400,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
                     if (packageInfo == null || value == -1) {
                       return Padding(
                         padding: EdgeInsets.only(left: 4, right: 4),
-                        child: RaisedButton(
-                          color: Colors.blue,
+                        child: ElevatedButton(
                           onPressed: () {
                             if (value == -1) {
                               widget.pageGo(1);
@@ -394,13 +415,12 @@ class __AppInfoPageState extends State<_AppInfoPage>
                       );
                     }
 
-                    bool ok = int.parse(packageInfo.buildNumber) >=
+                    bool ok = packageInfo.versionCode >=
                         widget.apkData[value].versionCode;
 
                     return Padding(
                       padding: EdgeInsets.only(left: 4, right: 4),
-                      child: RaisedButton(
-                        color: Colors.blue,
+                      child: ElevatedButton(
                         onPressed: () {
                           if (ok) {
                             widget.pageGo(1);

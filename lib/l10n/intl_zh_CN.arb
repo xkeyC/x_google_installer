@@ -2,6 +2,7 @@
   "_locale": "zh_CN",
   "title_uninstall": "卸载",
   "title_about_us": "关于我们",
+  "title_settings": "设置",
   "title_deviceInfo": "设备信息",
   "title_architecture": "处理器架构",
   "title_google_apps_status": "Google 应用状态",
@@ -15,9 +16,12 @@
   "title_use_default": "使用默认配置",
   "title_start_install": "开始安装",
   "title_install_with_browser": "使用浏览器下载安装",
+  "title_all_done": "全部完成，点击任意位置返回",
   "c_framework_ok": "全部OK！现在，您可以在您的设备上享受 Google Play 服务！",
   "c_framework_error": "啊嘞！您的设备还没有安装 Google Play 服务。",
-  "c_framework_warning": "道友请留步！您设备的 Google Play 不完整。",
-  "c_tip_framework_install": "注意：\n\n·安装完毕后请前往应用设置，务必授权以下权限：\n\n·自启动权限（部分设备） \n\n·读取手机状态（信息）权限 \n\n·在后台弹出窗口权限。（部分设备）\n\n·另外，MIUI12用户请注意将该应用的空白通行证关闭。",
-  "c_tip_store_install": "注意：\n安装完毕后请前往应用设置，务必授权以下权限：\n\n·读取手机状态（信息）权限 \n\n·在后台弹出窗口权限。（部分设备）\n\n·另外，MIUI12用户请注意将该应用的空白通行证关闭。"
+  "c_framework_warning": "道友请留步！您设备的 Google 框架 不完整。",
+  "c_framework_update": "您的 Google 框架可以更新啦！",
+  "c_tip_framework_install": "注意：\n\n安装完毕后请前往应用设置，务必授权以下权限：\n\n·自启动权限（部分设备） \n\n·读取手机状态（信息）权限 \n\n·在后台弹出窗口权限。（部分设备）\n\n·另外，MIUI12用户请注意将该应用的空白通行证关闭。",
+  "c_tip_store_install": "注意：\n\n安装完毕后请前往应用设置，务必授权以下权限：\n\n·读取手机状态（信息）权限 \n\n·在后台弹出窗口权限。（部分设备）\n\n·另外，MIUI12用户请注意将该应用的空白通行证关闭。",
+  "c_tip_installed": "注意：\n\n如果您遇到 Chrome, Youtube 等 Google 应用无法识别已登录账号的情况，请尝试开启这些应用的读取账户权限。"
 }

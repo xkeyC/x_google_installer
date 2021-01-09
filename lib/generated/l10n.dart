@@ -65,6 +65,16 @@ class S {
     );
   }
 
+  /// `Settings`
+  String get title_settings {
+    return Intl.message(
+      'Settings',
+      name: 'title_settings',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `DeviceInfo`
   String get title_deviceInfo {
     return Intl.message(
@@ -195,6 +205,16 @@ class S {
     );
   }
 
+  /// `All Done`
+  String get title_all_done {
+    return Intl.message(
+      'All Done',
+      name: 'title_all_done',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All Done! Now you can enjoy Google services.`
   String get c_framework_ok {
     return Intl.message(
@@ -225,6 +245,16 @@ class S {
     );
   }
 
+  /// `A new version of your Google Framework is available!`
+  String get c_framework_update {
+    return Intl.message(
+      'A new version of your Google Framework is available!',
+      name: 'c_framework_update',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Self-starting permission (some devices)\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application.`
   String get c_tip_framework_install {
     return Intl.message(
@@ -240,6 +270,16 @@ class S {
     return Intl.message(
       'NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application.',
       name: 'c_tip_store_install',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications.`
+  String get c_tip_installed {
+    return Intl.message(
+      'NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications.',
+      name: 'c_tip_installed',
       desc: '',
       args: [],
     );

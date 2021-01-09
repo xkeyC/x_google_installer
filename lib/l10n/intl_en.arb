@@ -2,6 +2,7 @@
   "_locale": "en",
   "title_uninstall": "Uninstall",
   "title_about_us": "About Us",
+  "title_settings": "Settings",
   "title_deviceInfo": "DeviceInfo",
   "title_architecture": "Architecture",
   "title_google_apps_status": "Google Apps Status",
@@ -15,10 +16,12 @@
   "title_use_default": "Use Default",
   "title_start_install": "Install",
   "title_install_with_browser": "Install with browser",
+  "title_all_done": "All Done",
   "c_framework_ok": "All Done! Now you can enjoy Google services.",
   "c_framework_error": "Google framework isn’t installed on your device!",
   "c_framework_warning": "Your Google Play service is incomplete!",
+  "c_framework_update": "A new version of your Google Framework is available!",
   "c_tip_framework_install": "NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Self-starting permission (some devices)\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application.",
-  "c_tip_store_install": "NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application."
-
+  "c_tip_store_install": "NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application.",
+  "c_tip_installed": "NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications."
 }
