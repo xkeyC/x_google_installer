@@ -215,6 +215,36 @@ class S {
     );
   }
 
+  /// `Error`
+  String get title_error {
+    return Intl.message(
+      'Error',
+      name: 'title_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enforce`
+  String get title_enforce_continue {
+    return Intl.message(
+      'Enforce',
+      name: 'title_enforce_continue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, your Google framework is a system application and we cannot uninstall it for you.`
+  String get c_framework_is_system_app {
+    return Intl.message(
+      'Sorry, your Google framework is a system application and we cannot uninstall it for you.',
+      name: 'c_framework_is_system_app',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All Done! Now you can enjoy Google services.`
   String get c_framework_ok {
     return Intl.message(

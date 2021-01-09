@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("en"),
     "c_framework_error" : MessageLookupByLibrary.simpleMessage("Google framework isn’t installed on your device!"),
+    "c_framework_is_system_app" : MessageLookupByLibrary.simpleMessage("Sorry, your Google framework is a system application and we cannot uninstall it for you."),
     "c_framework_ok" : MessageLookupByLibrary.simpleMessage("All Done! Now you can enjoy Google services."),
     "c_framework_update" : MessageLookupByLibrary.simpleMessage("A new version of your Google Framework is available!"),
     "c_framework_warning" : MessageLookupByLibrary.simpleMessage("Your Google Play service is incomplete!"),
@@ -34,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_architecture" : MessageLookupByLibrary.simpleMessage("Architecture"),
     "title_checking_data" : MessageLookupByLibrary.simpleMessage("Checking Data..."),
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("DeviceInfo"),
+    "title_enforce_continue" : MessageLookupByLibrary.simpleMessage("Enforce"),
+    "title_error" : MessageLookupByLibrary.simpleMessage("Error"),
     "title_fix_google_play" : MessageLookupByLibrary.simpleMessage("Fix Google Framework"),
     "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google Apps Status"),
     "title_install_google_play" : MessageLookupByLibrary.simpleMessage("Install Google Framework"),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:app_installer/app_installer.dart';
+import 'package:app_uninstaller/app_uninstaller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -38,27 +39,36 @@ class _InstallPageState extends State<InstallPage> {
         physics: NeverScrollableScrollPhysics(),
         children: [
           _AppInfoPage(
-              NetworkImagesIndex.gappFramework,
-              "Google Play Framework",
-              AppConf.gappsIndex.framework,
-              S.of(context).c_tip_framework_install,
-              AppConf.networkGappsInfo.framework,
-              pageGo: goPage),
+            NetworkImagesIndex.gappFramework,
+            "Google Play Framework",
+            "com.google.android.gsf",
+            AppConf.gappsIndex.framework,
+            S.of(context).c_tip_framework_install,
+            AppConf.networkGappsInfo.framework,
+            pageGo: goPage,
+            unInstallMode: widget.unInstallMode,
+          ),
           _AppInfoPage(
-              NetworkImagesIndex.gappService,
-              "Google Play Service",
-              AppConf.gappsIndex.services,
-              S.of(context).c_tip_framework_install,
-              AppConf.networkGappsInfo.service,
-              pageGo: goPage),
+            NetworkImagesIndex.gappService,
+            "Google Play Service",
+            "com.google.android.gms",
+            AppConf.gappsIndex.services,
+            S.of(context).c_tip_framework_install,
+            AppConf.networkGappsInfo.service,
+            pageGo: goPage,
+            unInstallMode: widget.unInstallMode,
+          ),
           _AppInfoPage(
-              NetworkImagesIndex.gappStore,
-              "Google Play Store",
-              AppConf.gappsIndex.store,
-              S.of(context).c_tip_store_install,
-              AppConf.networkGappsInfo.store,
-              pageGo: goPage),
-          InstalledPage(),
+            NetworkImagesIndex.gappStore,
+            "Google Play Store",
+            "com.android.vending",
+            AppConf.gappsIndex.store,
+            S.of(context).c_tip_store_install,
+            AppConf.networkGappsInfo.store,
+            pageGo: goPage,
+            unInstallMode: widget.unInstallMode,
+          ),
+          InstalledPage(widget.unInstallMode),
         ],
       ),
     );
@@ -71,6 +81,10 @@ class _InstallPageState extends State<InstallPage> {
 }
 
 class InstalledPage extends StatelessWidget {
+  final bool uninstallMode;
+
+  InstalledPage(this.uninstallMode);
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -92,12 +106,14 @@ class InstalledPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Card(
-                child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(S.of(context).c_tip_installed),
-                ),
-              )
+              uninstallMode
+                  ? SizedBox()
+                  : Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(S.of(context).c_tip_installed),
+                      ),
+                    )
             ],
           ),
         ),
@@ -109,15 +125,18 @@ class InstalledPage extends StatelessWidget {
 class _AppInfoPage extends StatefulWidget {
   final String iconURL;
   final String appName;
+  final String packageName;
   final Map<int, ApkData> apkData;
   final String tipText;
   final int networkGappsVersion;
   final PageGo pageGo;
+  final bool unInstallMode;
 
-  _AppInfoPage(this.iconURL, this.appName, this.apkData, this.tipText,
-      this.networkGappsVersion,
-      {this.pageGo}) {
+  _AppInfoPage(this.iconURL, this.appName, this.packageName, this.apkData,
+      this.tipText, this.networkGappsVersion,
+      {this.pageGo, this.unInstallMode}) {
     assert(pageGo != null);
+    assert(unInstallMode != null);
   }
   @override
   __AppInfoPageState createState() => __AppInfoPageState();
@@ -143,7 +162,11 @@ class __AppInfoPageState extends State<_AppInfoPage>
       }
     });
 
-    value = widget.networkGappsVersion;
+    if (!widget.unInstallMode) {
+      value = widget.networkGappsVersion;
+    } else {
+      value = -2;
+    }
     updatePackageInfo();
     super.initState();
   }
@@ -157,12 +180,11 @@ class __AppInfoPageState extends State<_AppInfoPage>
   }
 
   void updatePackageInfo() async {
-    if (value != -1 && widget.apkData.length != 0) {
-      try {
-        packageInfo =
-            await InstalledApps.getAppInfo(widget.apkData[value].packageName);
-        setState(() {});
-      } catch (_) {}
+    try {
+      packageInfo = await InstalledApps.getAppInfo(widget.packageName);
+      setState(() {});
+    } catch (_) {
+      packageInfo = null;
     }
   }
 
@@ -254,14 +276,23 @@ class __AppInfoPageState extends State<_AppInfoPage>
             child: Builder(builder: (context) {
               List<DropdownMenuItem> list = [];
 
-              widget.apkData.forEach((key, value) {
+              if (!widget.unInstallMode) {
+                widget.apkData.forEach((key, value) {
+                  list.add(DropdownMenuItem(
+                    value: key,
+                    child: Text(
+                      "<${value.versionCode}>  ${value.versionName}",
+                    ),
+                  ));
+                });
+              } else {
                 list.add(DropdownMenuItem(
-                  value: key,
+                  value: -2,
                   child: Text(
-                    "<${value.versionCode}>  ${value.versionName}",
+                    S.of(context).title_uninstall,
                   ),
                 ));
-              });
+              }
 
               list.add(DropdownMenuItem(
                 value: -1,
@@ -291,7 +322,9 @@ class __AppInfoPageState extends State<_AppInfoPage>
           ),
           Builder(
             builder: (BuildContext context) {
-              if (value == -1 || widget.apkData[value].note == null) {
+              if (value == -1 ||
+                  value == -2 ||
+                  widget.apkData[value].note == null) {
                 return SizedBox();
               }
               return Center(
@@ -340,10 +373,12 @@ class __AppInfoPageState extends State<_AppInfoPage>
               FloatingActionButton(
                 heroTag: null,
                 mini: true,
-                backgroundColor: this.value == widget.networkGappsVersion
+                backgroundColor: this.value == widget.networkGappsVersion ||
+                        widget.unInstallMode
                     ? Colors.grey
                     : Colors.blue,
-                onPressed: this.value == widget.networkGappsVersion
+                onPressed: this.value == widget.networkGappsVersion ||
+                        widget.unInstallMode
                     ? null
                     : () {
                         setState(() {
@@ -397,6 +432,60 @@ class __AppInfoPageState extends State<_AppInfoPage>
                       );
                     }
 
+                    /// Uninstall
+                    if (value == -2) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: 4, right: 4),
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              if (packageInfo == null) {
+                                widget.pageGo(1);
+                              }
+                              bool isSystemApp =
+                                  await InstalledApps.isSystemApp(
+                                      widget.packageName);
+                              if (!isSystemApp) {
+                                AppUninstaller.Uninstall(widget.packageName);
+                                return;
+                              }
+
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(S.of(context).title_error),
+                                      content: Text(S
+                                          .of(context)
+                                          .c_framework_is_system_app),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              setState(() {
+                                                value = -1;
+                                              });
+                                            },
+                                            child: Text("ok")),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              AppUninstaller.Uninstall(
+                                                  widget.packageName);
+                                            },
+                                            child: Text(S
+                                                .of(context)
+                                                .title_enforce_continue)),
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: Text(packageInfo == null
+                                ? S.of(context).title_next
+                                : S.of(context).title_uninstall)),
+                      );
+                    }
+
+                    /// go next
                     if (packageInfo == null || value == -1) {
                       return Padding(
                         padding: EdgeInsets.only(left: 4, right: 4),
@@ -418,6 +507,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
                     bool ok = packageInfo.versionCode >=
                         widget.apkData[value].versionCode;
 
+                    /// Download and install
                     return Padding(
                       padding: EdgeInsets.only(left: 4, right: 4),
                       child: ElevatedButton(
@@ -439,8 +529,9 @@ class __AppInfoPageState extends State<_AppInfoPage>
               FloatingActionButton(
                 heroTag: null,
                 mini: true,
-                backgroundColor: value == -1 ? Colors.grey : Colors.blue,
-                onPressed: value != -1
+                backgroundColor:
+                    value == -1 || value == -2 ? Colors.grey : Colors.blue,
+                onPressed: value != -1 && value != -2
                     ? () {
                         FlutterWebBrowser.openWebPage(
                           url: widget.apkData[value].url,

@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("zh_CN"),
     "c_framework_error" : MessageLookupByLibrary.simpleMessage("啊嘞！您的设备还没有安装 Google Play 服务。"),
+    "c_framework_is_system_app" : MessageLookupByLibrary.simpleMessage("抱歉，您的 Google 框架为系统预装应用，我们无法帮您卸载。"),
     "c_framework_ok" : MessageLookupByLibrary.simpleMessage("全部OK！现在，您可以在您的设备上享受 Google Play 服务！"),
     "c_framework_update" : MessageLookupByLibrary.simpleMessage("您的 Google 框架可以更新啦！"),
     "c_framework_warning" : MessageLookupByLibrary.simpleMessage("道友请留步！您设备的 Google 框架 不完整。"),
@@ -34,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_architecture" : MessageLookupByLibrary.simpleMessage("处理器架构"),
     "title_checking_data" : MessageLookupByLibrary.simpleMessage("正在核对信息..."),
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("设备信息"),
+    "title_enforce_continue" : MessageLookupByLibrary.simpleMessage("强制执行"),
+    "title_error" : MessageLookupByLibrary.simpleMessage("出错了！"),
     "title_google_apps_status" : MessageLookupByLibrary.simpleMessage("Google 应用状态"),
     "title_install_with_browser" : MessageLookupByLibrary.simpleMessage("使用浏览器下载安装"),
     "title_next" : MessageLookupByLibrary.simpleMessage("下一步"),
