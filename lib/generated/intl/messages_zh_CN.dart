@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_install_with_browser" : MessageLookupByLibrary.simpleMessage("使用浏览器下载安装"),
     "title_next" : MessageLookupByLibrary.simpleMessage("下一步"),
     "title_not_install" : MessageLookupByLibrary.simpleMessage("未安装"),
+    "title_open_google" : MessageLookupByLibrary.simpleMessage("打开 Google Play"),
     "title_retry" : MessageLookupByLibrary.simpleMessage("重试"),
     "title_settings" : MessageLookupByLibrary.simpleMessage("设置"),
     "title_skip" : MessageLookupByLibrary.simpleMessage("跳过"),

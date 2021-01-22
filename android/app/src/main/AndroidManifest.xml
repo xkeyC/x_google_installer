@@ -18,13 +18,15 @@
         android:icon="@mipmap/ic_launcher">
 
        <provider
-           android:name="androidx.core.content.FileProvider"
+           android:name="com.tencent.bugly.beta.utils.BuglyFileProvider"
            android:authorities="${applicationId}.fileProvider"
            android:exported="false"
-           android:grantUriPermissions="true">
+           android:grantUriPermissions="true"
+           tools:replace="name,authorities,exported,grantUriPermissions">
            <meta-data
                android:name="android.support.FILE_PROVIDER_PATHS"
-               android:resource="@xml/file_paths" />
+               android:resource="@xml/file_paths"
+               tools:replace="name,resource"/>
        </provider>
 
         <activity
@@ -56,6 +58,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+       <activity
+           android:name="com.tencent.bugly.beta.ui.BetaActivity"
+           android:configChanges="keyboardHidden|orientation|screenSize|locale"
+           android:theme="@android:style/Theme.Translucent" />
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

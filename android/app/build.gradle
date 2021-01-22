@@ -16,7 +16,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 /// add signingConfig.gradle File to import signingConfig
-//apply from: "signingConfig.gradle"
+apply from: "signingConfig.gradle"
 
 android {
     compileSdkVersion 30
@@ -29,16 +29,25 @@ android {
         applicationId "co.clinux.googleinstaller"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 202001091
-        versionName "0.2 beta"
+        versionCode 202101220
+        versionName "0.21 beta"
     }
 
     buildTypes {
         release {
             /// add release signingConfig to use :
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources = true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources = true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -49,4 +58,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.tencent.bugly:crashreport_upgrade:1.5.0'
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.700'
 }
