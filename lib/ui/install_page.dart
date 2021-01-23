@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:app_installer/app_installer.dart';
-import 'package:app_uninstaller/app_uninstaller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -378,18 +377,18 @@ class __AppInfoPageState extends State<_AppInfoPage>
             FloatingActionButton(
               heroTag: null,
               mini: true,
-              backgroundColor:
-              this.value == widget.networkGappsVersion || widget.unInstallMode
+              backgroundColor: this.value == widget.networkGappsVersion ||
+                      widget.unInstallMode
                   ? Colors.grey
                   : Colors.blue,
-              onPressed:
-              this.value == widget.networkGappsVersion || widget.unInstallMode
+              onPressed: this.value == widget.networkGappsVersion ||
+                      widget.unInstallMode
                   ? null
                   : () {
-                setState(() {
-                  this.value = widget.networkGappsVersion;
-                });
-              },
+                      setState(() {
+                        this.value = widget.networkGappsVersion;
+                      });
+                    },
               child: Icon(Icons.restore),
               tooltip: S.of(context).title_use_default,
             ),
@@ -449,7 +448,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
                             bool isSystemApp = await InstalledApps.isSystemApp(
                                 widget.packageName);
                             if (!isSystemApp) {
-                              AppUninstaller.Uninstall(widget.packageName);
+                              AppInstaller.unInstallApp(widget.packageName);
                               return;
                             }
 
@@ -458,13 +457,14 @@ class __AppInfoPageState extends State<_AppInfoPage>
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text(S.of(context).title_error),
-                                    content: Text(
-                                        S.of(context).c_framework_is_system_app),
+                                    content: Text(S
+                                        .of(context)
+                                        .c_framework_is_system_app),
                                     actions: [
                                       TextButton(
                                           onPressed: () {
                                             Navigator.pop(context);
-                                            AppUninstaller.Uninstall(
+                                            AppInstaller.unInstallApp(
                                                 widget.packageName);
                                           },
                                           child: Text(S
@@ -533,20 +533,20 @@ class __AppInfoPageState extends State<_AppInfoPage>
               heroTag: null,
               mini: true,
               backgroundColor:
-              value == -1 || value == -2 ? Colors.grey : Colors.blue,
+                  value == -1 || value == -2 ? Colors.grey : Colors.blue,
               onPressed: value != -1 && value != -2
                   ? () {
-                FlutterWebBrowser.openWebPage(
-                  url: widget.apkData[value].url,
-                  customTabsOptions: CustomTabsOptions(
-                    colorScheme: CustomTabsColorScheme.light,
-                    toolbarColor: Colors.white,
-                    addDefaultShareMenuItem: true,
-                    showTitle: true,
-                    urlBarHidingEnabled: true,
-                  ),
-                );
-              }
+                      FlutterWebBrowser.openWebPage(
+                        url: widget.apkData[value].url,
+                        customTabsOptions: CustomTabsOptions(
+                          colorScheme: CustomTabsColorScheme.light,
+                          toolbarColor: Colors.white,
+                          addDefaultShareMenuItem: true,
+                          showTitle: true,
+                          urlBarHidingEnabled: true,
+                        ),
+                      );
+                    }
                   : null,
               child: FaIcon(FontAwesomeIcons.chrome),
               tooltip: S.of(context).title_install_with_browser,

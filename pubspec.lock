@@ -6,17 +6,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "797eb9703ceb4a186da131b20f5f73f88c2275db"
+      resolved-ref: b01451ac58a2b6993824f48389d64a091ff07568
       url: "https://github.com/xkeyC/app_installer.git"
     source: git
     version: "0.5.0"
-  app_uninstaller:
-    dependency: "direct main"
-    description:
-      name: app_uninstaller
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.1"
   archive:
     dependency: transitive
     description:
@@ -161,7 +154,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -298,7 +291,7 @@ packages:
       name: path_provider_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4+6"
+    version: "0.0.4+8"
   path_provider_platform_interface:
     dependency: transitive
     description:
@@ -319,7 +312,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.0-nullsafety.3"
+    version: "1.9.2"
   petitparser:
     dependency: transitive
     description:
@@ -373,14 +366,14 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.2+1"
+    version: "1.3.2+2"
   sqflite_common:
     dependency: transitive
     description:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2+1"
+    version: "1.0.3"
   stack_trace:
     dependency: transitive
     description:

@@ -29,8 +29,11 @@ android {
         applicationId "co.clinux.googleinstaller"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 202101221
-        versionName "0.2.1 beta"
+        versionCode 202101230
+        versionName "0.2.2 beta"
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
     }
 
     buildTypes {
@@ -43,6 +46,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+            ndk {
+                abiFilters 'x86'
+            }
             signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources = true
