@@ -384,22 +384,28 @@ Widget makeDeviceInfoRow(
     {double subtitleSize = 13}) {
   return Padding(
     padding: EdgeInsets.only(
-        left: MediaQuery.of(context).size.width * 0.03,
-        right: MediaQuery.of(context).size.width * 0.03),
+        left: MediaQuery.of(context).size.width * 0.04,
+        right: MediaQuery.of(context).size.width * 0.04),
     child: Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment:CrossAxisAlignment.center,
       children: [
         icon,
         Text(
           title,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        Text(
-          subtitle,
-          style: TextStyle(
-              fontSize: subtitleSize,
-              color: Colors.black.withAlpha(120),
-              fontWeight: FontWeight.bold),
+        SizedBox(
+          width: 100,
+          child: Text(
+            subtitle,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: subtitleSize,
+                color: Colors.black.withAlpha(120),
+                fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+          ),
         )
       ],
     ),
