@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.dispose();
   }
 
+  /// Build UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +128,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             ),
             DeviceInformationBanner(),
             GappsBanner(status),
+
+            /// Bottom Menu
             SizedBox(
               child: Builder(builder: (BuildContext context) {
                 String text;
@@ -149,6 +152,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 }
                 return Padding(
                   padding: EdgeInsets.only(
+                      top: 10,
                       left: MediaQuery.of(context).size.width * .2,
                       right: MediaQuery.of(context).size.width * .2),
                   child: ElevatedButton(
@@ -172,7 +176,24 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   ),
                 );
               }),
-            )
+            ),
+            status.getStatusCode() == -1
+                ? SizedBox()
+                : Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * .2,
+                        right: MediaQuery.of(context).size.width * .2),
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return InstallPage(
+                              installMode: InstallMode.reinstallMode,
+                            );
+                          }));
+                        },
+                        child: Text(
+                            S.of(context).title_reinstall_google_framework))),
           ],
         ),
       ),
@@ -273,8 +294,8 @@ class _GappsBannerState extends State<GappsBanner> {
                     return ListTile(
                       title: Text(info.name),
                       subtitle: Text(networkVersionCode > info.versionCode
-                          ? "${info.versionCode} ->>> $networkVersionCode"
-                          : "${info.versionName}  (${info.versionCode})"),
+                          ? "<${info.versionCode}>  ➡  <$networkVersionCode>"
+                          : "${info.versionName}  <${info.versionCode}>"),
                       leading: CircleAvatar(
                         backgroundColor: Colors.white,
                         child: CachedNetworkImage(
@@ -388,7 +409,7 @@ Widget makeDeviceInfoRow(
         right: MediaQuery.of(context).size.width * 0.04),
     child: Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment:CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         icon,
         Text(

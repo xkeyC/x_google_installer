@@ -16,10 +16,16 @@ import '../conf.dart';
 
 typedef PageGo = void Function(int);
 
-class InstallPage extends StatefulWidget {
-  final bool unInstallMode;
+class InstallMode {
+  static const int defaultMode = 0;
+  static const int unInstallMode = -1;
+  static const int reinstallMode = 1;
+}
 
-  InstallPage({Key key, this.unInstallMode = false}) : super(key: key);
+class InstallPage extends StatefulWidget {
+  final int installMode;
+
+  InstallPage({Key key, this.installMode = 0}) : super(key: key);
 
   @override
   _InstallPageState createState() => _InstallPageState();
@@ -35,7 +41,8 @@ class _InstallPageState extends State<InstallPage> {
       backgroundColor: getPageBackground(context),
       body: PageView(
         controller: controller,
-        physics: NeverScrollableScrollPhysics(),
+        physics:
+            widget.installMode != 0 ? null : NeverScrollableScrollPhysics(),
         children: [
           _AppInfoPage(
             NetworkImagesIndex.gappFramework,
@@ -45,7 +52,7 @@ class _InstallPageState extends State<InstallPage> {
             S.of(context).c_tip_framework_install,
             AppConf.networkGappsInfo.framework,
             pageGo: goPage,
-            unInstallMode: widget.unInstallMode,
+            installMode: widget.installMode,
           ),
           _AppInfoPage(
             NetworkImagesIndex.gappService,
@@ -55,7 +62,7 @@ class _InstallPageState extends State<InstallPage> {
             S.of(context).c_tip_framework_install,
             AppConf.networkGappsInfo.service,
             pageGo: goPage,
-            unInstallMode: widget.unInstallMode,
+            installMode: widget.installMode,
           ),
           _AppInfoPage(
             NetworkImagesIndex.gappStore,
@@ -65,9 +72,9 @@ class _InstallPageState extends State<InstallPage> {
             S.of(context).c_tip_store_install,
             AppConf.networkGappsInfo.store,
             pageGo: goPage,
-            unInstallMode: widget.unInstallMode,
+            installMode: widget.installMode,
           ),
-          InstalledPage(widget.unInstallMode),
+          InstalledPage(widget.installMode == InstallMode.unInstallMode),
         ],
       ),
     );
@@ -75,7 +82,7 @@ class _InstallPageState extends State<InstallPage> {
 
   void goPage(int i) {
     controller.animateToPage(controller.page.toInt() + i,
-        duration: Duration(seconds: 1), curve: Curves.easeOutQuint);
+        duration: Duration(milliseconds: 500), curve: Curves.easeOutQuint);
   }
 }
 
@@ -129,13 +136,13 @@ class _AppInfoPage extends StatefulWidget {
   final String tipText;
   final int networkGappsVersion;
   final PageGo pageGo;
-  final bool unInstallMode;
+  final int installMode;
 
   _AppInfoPage(this.iconURL, this.appName, this.packageName, this.apkData,
       this.tipText, this.networkGappsVersion,
-      {this.pageGo, this.unInstallMode}) {
+      {this.pageGo, this.installMode}) {
     assert(pageGo != null);
-    assert(unInstallMode != null);
+    assert(installMode != null);
   }
   @override
   __AppInfoPageState createState() => __AppInfoPageState();
@@ -161,7 +168,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
       }
     });
 
-    if (!widget.unInstallMode) {
+    if (widget.installMode != InstallMode.unInstallMode) {
       value = widget.networkGappsVersion;
     } else {
       value = -2;
@@ -246,6 +253,31 @@ class __AppInfoPageState extends State<_AppInfoPage>
   }
 
   void installApk(String filePath) {
+    if (packageInfo != null || packageInfo.versionCode > value) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(S.of(context).title_downgrade_install),
+              content: Text(S.of(context).c_downgrade_install),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      AppInstaller.unInstallApp(widget.packageName);
+                    },
+                    child: Text(S.of(context).title_uninstall)),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      AppInstaller.installApk(filePath);
+                    },
+                    child: Text(S.of(context).title_enforce_continue)),
+              ],
+            );
+          });
+      return;
+    }
     AppInstaller.installApk(filePath);
   }
 
@@ -259,6 +291,8 @@ class __AppInfoPageState extends State<_AppInfoPage>
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.04,
             ),
+
+            /// App Icon
             Center(
               child: SizedBox(
                 height: 128,
@@ -266,60 +300,84 @@ class __AppInfoPageState extends State<_AppInfoPage>
                 child: CachedNetworkImage(imageUrl: widget.iconURL),
               ),
             ),
+
+            /// App Name
             Center(
               child: Text(
                 widget.appName,
                 style: TextStyle(fontSize: 22),
               ),
             ),
+
+            SizedBox(
+              height: 5,
+            ),
+
+            /// Version Menu
             Center(
               child: Builder(builder: (context) {
                 List<DropdownMenuItem> list = [];
 
-                if (!widget.unInstallMode) {
+                if (widget.installMode != InstallMode.unInstallMode) {
                   widget.apkData.forEach((key, value) {
                     list.add(DropdownMenuItem(
                       value: key,
-                      child: Text(
-                        "<${value.versionCode}>  ${value.versionName}",
+                      child: ListTile(
+                        title: Text(value.versionCode.toString(),
+                            textAlign: TextAlign.center),
+                        subtitle: Text(value.versionName,
+                            textAlign: TextAlign.center),
                       ),
                     ));
                   });
                 } else {
                   list.add(DropdownMenuItem(
                     value: -2,
-                    child: Text(
-                      S.of(context).title_uninstall,
+                    child: SizedBox(
+                      child: Text(S.of(context).title_uninstall,
+                          style: TextStyle(fontSize: 18),
+                          textAlign: TextAlign.center),
+                      width: MediaQuery.of(context).size.width,
                     ),
                   ));
                 }
 
                 list.add(DropdownMenuItem(
                   value: -1,
-                  child: Text(
-                    S.of(context).title_skip,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Text(S.of(context).title_skip,
+                        style: TextStyle(fontSize: 18),
+                        textAlign: TextAlign.center),
                   ),
                 ));
 
-                return DropdownButton(
-                  isExpanded: true,
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Theme.of(context).textTheme.headline6.color),
-                  value: value,
-                  items: list,
-                  onChanged: (value) async {
-                    updatePackageInfo();
-                    setState(() {
-                      this.value = value;
-                    });
-                  },
+                return DropdownButtonHideUnderline(
+                  child: DropdownButton(
+                    isExpanded: true,
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Theme.of(context).textTheme.headline6.color),
+                    value: value,
+                    items: list,
+                    onChanged: (value) async {
+                      if (isDownloading) {
+                        return;
+                      }
+                      updatePackageInfo();
+                      setState(() {
+                        this.value = value;
+                      });
+                    },
+                  ),
                 );
               }),
             ),
             SizedBox(
-              height: 10,
+              height: 30,
             ),
+
+            /// Note Text
             Builder(
               builder: (BuildContext context) {
                 if (value == -1 ||
@@ -344,31 +402,78 @@ class __AppInfoPageState extends State<_AppInfoPage>
                 );
               },
             ),
-            Center(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Card(
-                  elevation: 0.1,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.white70, width: 1),
-                    borderRadius: BorderRadius.circular(1),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      widget.tipText,
-                      style: TextStyle(fontSize: 16),
+
+            /// Tip Text
+            widget.installMode == InstallMode.unInstallMode
+                ? SizedBox()
+                : Center(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Card(
+                        elevation: 0.1,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.white70, width: 1),
+                          borderRadius: BorderRadius.circular(1),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(
+                            widget.tipText,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
+            SizedBox(
+              height: 5,
             ),
             SizedBox(
-              height: 10,
-            ),
+              width: MediaQuery.of(context).size.width,
+              child: widget.packageName != "com.google.android.gms" ||
+                      widget.installMode == InstallMode.unInstallMode
+                  ? null
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: TextButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(S
+                                          .of(context)
+                                          .title_installation_failed),
+                                      content: Text(
+                                          S.of(context).c_installation_failed),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                value = -1;
+                                                Navigator.pop(context);
+                                              });
+                                            },
+                                            child: Text("ok"))
+                                      ],
+                                    );
+                                  });
+                            },
+                            child:
+                                Text(S.of(context).title_installation_failed),
+                          ),
+                        )
+                      ],
+                    ),
+            )
           ],
         ),
       ),
+
+      ///  Bottom Menu
       bottomNavigationBar: BottomAppBar(
         child: ButtonBar(
           mainAxisSize: MainAxisSize.max,
@@ -378,11 +483,11 @@ class __AppInfoPageState extends State<_AppInfoPage>
               heroTag: null,
               mini: true,
               backgroundColor: this.value == widget.networkGappsVersion ||
-                      widget.unInstallMode
+                      widget.installMode == InstallMode.unInstallMode
                   ? Colors.grey
                   : Colors.blue,
               onPressed: this.value == widget.networkGappsVersion ||
-                      widget.unInstallMode
+                      widget.installMode == InstallMode.unInstallMode
                   ? null
                   : () {
                       setState(() {
@@ -392,6 +497,8 @@ class __AppInfoPageState extends State<_AppInfoPage>
               child: Icon(Icons.restore),
               tooltip: S.of(context).title_use_default,
             ),
+
+            /// Supper Button
             SizedBox(
               width: isDownloading ? 120 : 120,
               child: Builder(
@@ -448,7 +555,10 @@ class __AppInfoPageState extends State<_AppInfoPage>
                             bool isSystemApp = await InstalledApps.isSystemApp(
                                 widget.packageName);
                             if (!isSystemApp) {
-                              AppInstaller.unInstallApp(widget.packageName);
+                              AppInstaller.unInstallApp(widget.packageName)
+                                  .then((value) {
+                                setState(() {});
+                              });
                               return;
                             }
 
@@ -465,7 +575,10 @@ class __AppInfoPageState extends State<_AppInfoPage>
                                           onPressed: () {
                                             Navigator.pop(context);
                                             AppInstaller.unInstallApp(
-                                                widget.packageName);
+                                                    widget.packageName)
+                                                .then((value) {
+                                              setState(() {});
+                                            });
                                           },
                                           child: Text(S
                                               .of(context)
@@ -507,8 +620,16 @@ class __AppInfoPageState extends State<_AppInfoPage>
                     );
                   }
 
-                  bool ok = packageInfo.versionCode >=
-                      widget.apkData[value].versionCode;
+                  bool ok = false;
+                  if (widget.installMode == InstallMode.defaultMode) {
+                    ok = packageInfo.versionCode >=
+                        widget.apkData[value].versionCode;
+                  } else if (widget.installMode == InstallMode.unInstallMode) {
+                    ok = packageInfo.versionCode == null;
+                  } else if (widget.installMode == InstallMode.reinstallMode) {
+                    ok = packageInfo.versionCode ==
+                        widget.apkData[value].versionCode;
+                  }
 
                   /// Download and install
                   return Padding(

@@ -12,3 +12,4 @@ key.properties
 /app/signingConfig.gradle
 /app/build/
 /app/seeds.txt
+/app/google-services.json

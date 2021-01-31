@@ -14,6 +14,7 @@ if (flutterRoot == null) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 /// add signingConfig.gradle File to import signingConfig
 apply from: "signingConfig.gradle"
@@ -29,8 +30,8 @@ android {
         applicationId "co.clinux.googleinstaller"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 202101230
-        versionName "0.2.2 beta"
+        versionCode 202101310
+        versionName "0.2.3 beta"
         ndk {
             abiFilters 'armeabi-v7a'
         }
@@ -64,6 +65,4 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.tencent.bugly:crashreport_upgrade:1.5.0'
-    implementation 'com.tencent.bugly:nativecrashreport:3.7.700'
 }

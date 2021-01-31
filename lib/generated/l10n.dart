@@ -255,6 +255,36 @@ class S {
     );
   }
 
+  /// `Reinstall`
+  String get title_reinstall_google_framework {
+    return Intl.message(
+      'Reinstall',
+      name: 'title_reinstall_google_framework',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Downgrade Install!`
+  String get title_downgrade_install {
+    return Intl.message(
+      'Downgrade Install!',
+      name: 'title_downgrade_install',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `installation failed?`
+  String get title_installation_failed {
+    return Intl.message(
+      'installation failed?',
+      name: 'title_installation_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sorry, your Google framework is a system application and we cannot uninstall it for you.`
   String get c_framework_is_system_app {
     return Intl.message(
@@ -340,6 +370,26 @@ class S {
     return Intl.message(
       'Failed to connect to the clinux.co server.',
       name: 'c_err_connect_server',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Some devices have pre-installed the Google Play Service program that is inconsistent with the official Google signature. The service will be automatically updated to the official version after you successfully log in to the Play Store. Please try to skip the installation of the Service, and install and launch Google Play later.`
+  String get c_installation_failed {
+    return Intl.message(
+      'Some devices have pre-installed the Google Play Service program that is inconsistent with the official Google signature. The service will be automatically updated to the official version after you successfully log in to the Play Store. Please try to skip the installation of the Service, and install and launch Google Play later.',
+      name: 'c_installation_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unless you have performed some Hack operations on your device, the Android system will not allow you to downgrade the installation. Please uninstall the new version first, and then reinstall the old version.`
+  String get c_downgrade_install {
+    return Intl.message(
+      'Unless you have performed some Hack operations on your device, the Android system will not allow you to downgrade the installation. Please uninstall the new version first, and then reinstall the old version.',
+      name: 'c_downgrade_install',
       desc: '',
       args: [],
     );

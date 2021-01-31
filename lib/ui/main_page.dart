@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/main_pages/home_page.dart';
+import 'package:x_google_installer/ui/settings_page.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
 import 'install_page.dart';
@@ -27,7 +28,7 @@ class _MainPageState extends State<MainPage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
                   return InstallPage(
-                    unInstallMode: true,
+                    installMode: InstallMode.unInstallMode,
                   );
                 }));
               },
@@ -36,7 +37,11 @@ class _MainPageState extends State<MainPage> {
             IconButton(
               tooltip: S.of(context).title_settings,
               icon: Icon(Icons.settings),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SettingsPage();
+                }));
+              },
               color: getTextColor(context),
             )
           ]),
