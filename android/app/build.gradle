@@ -30,7 +30,7 @@ android {
         applicationId "co.clinux.googleinstaller"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 202101310
+        versionCode 202102010
         versionName "0.2.4 beta"
         ndk {
             abiFilters 'armeabi-v7a'
