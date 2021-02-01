@@ -253,7 +253,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
   }
 
   void installApk(String filePath) {
-    if (packageInfo != null || packageInfo.versionCode > value) {
+    if (packageInfo != null && packageInfo.versionCode > value) {
       showDialog(
           context: context,
           builder: (context) {

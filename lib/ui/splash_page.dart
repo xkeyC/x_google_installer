@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,6 +22,13 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   Animation<Offset> flutterLogoAnimation;
   bool showPowerByText = false;
   GlobalKey<ScaffoldState> _scaffold = GlobalKey();
+
+  /// firebase
+
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   void initState() {
     Api.init();
@@ -116,6 +125,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         S.delegate
       ],
       supportedLocales: [const Locale('en'), const Locale('zh', 'CN')],
+      navigatorObservers: <NavigatorObserver>[observer],
       home: Builder(
         builder: (BuildContext context) {
           return Scaffold(

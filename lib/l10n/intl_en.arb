@@ -24,6 +24,8 @@
   "title_reinstall_google_framework": "Reinstall",
   "title_downgrade_install": "Downgrade Install!",
   "title_installation_failed": "installation failed?",
+  "title_remove_download_file": "Remove Download File",
+  "title_check_update": "Check for updates",
   "c_framework_is_system_app": "Sorry, your Google framework is a system application and we cannot uninstall it for you.",
   "c_framework_ok": "All Done! Now you can enjoy Google services.",
   "c_framework_error": "Google framework isn’t installed on your device!",

@@ -5,6 +5,8 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:installed_apps/app_info.dart';
+import 'package:installed_apps/installed_apps.dart';
 
 import 'api.dart';
 
@@ -12,6 +14,7 @@ class AppConf {
   static IndexData _indexData;
   static NetworkGappsInfo _networkGappsInfo;
   static AndroidDeviceInfo _androidDeviceInfo;
+  static AppInfo _thisAppInfo;
 
   static IndexData get gappsIndex {
     return _indexData;
@@ -25,7 +28,13 @@ class AppConf {
     return _networkGappsInfo;
   }
 
+  static AppInfo get thisAppInfo {
+    return _thisAppInfo;
+  }
+
   static Future<int> initData({bool enforce = false}) async {
+    _thisAppInfo = await InstalledApps.getAppInfo("co.clinux.googleinstaller");
+
     if (Platform.isAndroid) {
       _androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
     } else {

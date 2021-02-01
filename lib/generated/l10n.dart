@@ -285,6 +285,26 @@ class S {
     );
   }
 
+  /// `Remove Download File`
+  String get title_remove_download_file {
+    return Intl.message(
+      'Remove Download File',
+      name: 'title_remove_download_file',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check for updates`
+  String get title_check_update {
+    return Intl.message(
+      'Check for updates',
+      name: 'title_check_update',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sorry, your Google framework is a system application and we cannot uninstall it for you.`
   String get c_framework_is_system_app {
     return Intl.message(
