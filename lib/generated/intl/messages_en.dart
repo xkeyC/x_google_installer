@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("en"),
+    "c_donate" : MessageLookupByLibrary.simpleMessage("Make XGI better"),
+    "c_donate_tip" : MessageLookupByLibrary.simpleMessage("* Donation is your completely voluntary behavior, your donation will make the software better development, you will not get more priority technical support or software functionality changes because of donation, the way and amount of donation are decided by you, it is recommended that you note your nickname and message when donating, the list of donors will be permanently hard coded in the code of the software, and with the software update for update."),
     "c_downgrade_install" : MessageLookupByLibrary.simpleMessage("Unless you have performed some Hack operations on your device, the Android system will not allow you to downgrade the installation. Please uninstall the new version first, and then reinstall the old version."),
     "c_err_connect_server" : MessageLookupByLibrary.simpleMessage("Failed to connect to the clinux.co server."),
     "c_framework_error" : MessageLookupByLibrary.simpleMessage("Google framework isn’t installed on your device!"),
@@ -33,12 +35,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "c_tip_framework_install" : MessageLookupByLibrary.simpleMessage("NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Self-starting permission (some devices)\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application."),
     "c_tip_installed" : MessageLookupByLibrary.simpleMessage("NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications."),
     "c_tip_store_install" : MessageLookupByLibrary.simpleMessage("NOTE:\n\nAfter installation, please go to the application settings and be sure to authorize the following permissions:\n\n·Permission to read phone status (information)\n\n·Pop-up window permissions in the background. (Some equipment)\n\n·In addition, MIUI12 users should pay attention to closing the blank pass of the application."),
-    "title_about_us" : MessageLookupByLibrary.simpleMessage("About Us"),
+    "title_about" : MessageLookupByLibrary.simpleMessage("About"),
     "title_all_done" : MessageLookupByLibrary.simpleMessage("All Done"),
     "title_architecture" : MessageLookupByLibrary.simpleMessage("Architecture"),
     "title_check_update" : MessageLookupByLibrary.simpleMessage("Check for updates"),
     "title_checking_data" : MessageLookupByLibrary.simpleMessage("Checking Data..."),
     "title_deviceInfo" : MessageLookupByLibrary.simpleMessage("DeviceInfo"),
+    "title_donate" : MessageLookupByLibrary.simpleMessage("Donate"),
+    "title_donor_list" : MessageLookupByLibrary.simpleMessage("Donor List"),
     "title_downgrade_install" : MessageLookupByLibrary.simpleMessage("Downgrade Install!"),
     "title_enforce_continue" : MessageLookupByLibrary.simpleMessage("Enforce"),
     "title_error" : MessageLookupByLibrary.simpleMessage("Error"),
@@ -50,6 +54,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_next" : MessageLookupByLibrary.simpleMessage("Next"),
     "title_not_install" : MessageLookupByLibrary.simpleMessage("Not Install"),
     "title_open_google" : MessageLookupByLibrary.simpleMessage("Open Google Play"),
+    "title_opens_source_license" : MessageLookupByLibrary.simpleMessage("Open Source License"),
+    "title_project_home_site" : MessageLookupByLibrary.simpleMessage("Project Home Site"),
+    "title_project_main_developer" : MessageLookupByLibrary.simpleMessage("Main developer"),
     "title_reinstall_google_framework" : MessageLookupByLibrary.simpleMessage("Reinstall"),
     "title_remove_download_file" : MessageLookupByLibrary.simpleMessage("Remove Download File"),
     "title_retry" : MessageLookupByLibrary.simpleMessage("Retry"),
@@ -58,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "title_start_install" : MessageLookupByLibrary.simpleMessage("Install"),
     "title_uninstall" : MessageLookupByLibrary.simpleMessage("Uninstall"),
     "title_upgrade_google" : MessageLookupByLibrary.simpleMessage("Upgrade Google Framework"),
-    "title_use_default" : MessageLookupByLibrary.simpleMessage("Use Default")
+    "title_use_default" : MessageLookupByLibrary.simpleMessage("Use Default"),
+    "title_view_donor_list" : MessageLookupByLibrary.simpleMessage("View Donor List")
   };
 }

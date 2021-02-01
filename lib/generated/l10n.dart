@@ -55,11 +55,11 @@ class S {
     );
   }
 
-  /// `About Us`
-  String get title_about_us {
+  /// `About`
+  String get title_about {
     return Intl.message(
-      'About Us',
-      name: 'title_about_us',
+      'About',
+      name: 'title_about',
       desc: '',
       args: [],
     );
@@ -305,6 +305,66 @@ class S {
     );
   }
 
+  /// `Open Source License`
+  String get title_opens_source_license {
+    return Intl.message(
+      'Open Source License',
+      name: 'title_opens_source_license',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Project Home Site`
+  String get title_project_home_site {
+    return Intl.message(
+      'Project Home Site',
+      name: 'title_project_home_site',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main developer`
+  String get title_project_main_developer {
+    return Intl.message(
+      'Main developer',
+      name: 'title_project_main_developer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Donate`
+  String get title_donate {
+    return Intl.message(
+      'Donate',
+      name: 'title_donate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Donor List`
+  String get title_view_donor_list {
+    return Intl.message(
+      'View Donor List',
+      name: 'title_view_donor_list',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Donor List`
+  String get title_donor_list {
+    return Intl.message(
+      'Donor List',
+      name: 'title_donor_list',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sorry, your Google framework is a system application and we cannot uninstall it for you.`
   String get c_framework_is_system_app {
     return Intl.message(
@@ -410,6 +470,26 @@ class S {
     return Intl.message(
       'Unless you have performed some Hack operations on your device, the Android system will not allow you to downgrade the installation. Please uninstall the new version first, and then reinstall the old version.',
       name: 'c_downgrade_install',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make XGI better`
+  String get c_donate {
+    return Intl.message(
+      'Make XGI better',
+      name: 'c_donate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* Donation is your completely voluntary behavior, your donation will make the software better development, you will not get more priority technical support or software functionality changes because of donation, the way and amount of donation are decided by you, it is recommended that you note your nickname and message when donating, the list of donors will be permanently hard coded in the code of the software, and with the software update for update.`
+  String get c_donate_tip {
+    return Intl.message(
+      '* Donation is your completely voluntary behavior, your donation will make the software better development, you will not get more priority technical support or software functionality changes because of donation, the way and amount of donation are decided by you, it is recommended that you note your nickname and message when donating, the list of donors will be permanently hard coded in the code of the software, and with the software update for update.',
+      name: 'c_donate_tip',
       desc: '',
       args: [],
     );

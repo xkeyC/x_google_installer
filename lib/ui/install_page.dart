@@ -4,7 +4,6 @@ import 'package:app_installer/app_installer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:installed_apps/app_info.dart';
 import 'package:installed_apps/installed_apps.dart';
@@ -657,16 +656,7 @@ class __AppInfoPageState extends State<_AppInfoPage>
                   value == -1 || value == -2 ? Colors.grey : Colors.blue,
               onPressed: value != -1 && value != -2
                   ? () {
-                      FlutterWebBrowser.openWebPage(
-                        url: widget.apkData[value].url,
-                        customTabsOptions: CustomTabsOptions(
-                          colorScheme: CustomTabsColorScheme.light,
-                          toolbarColor: Colors.white,
-                          addDefaultShareMenuItem: true,
-                          showTitle: true,
-                          urlBarHidingEnabled: true,
-                        ),
-                      );
+                      AppConf.openUrl(widget.apkData[value].url);
                     }
                   : null,
               child: FaIcon(FontAwesomeIcons.chrome),

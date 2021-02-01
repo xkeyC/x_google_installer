@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:device_info/device_info.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:installed_apps/app_info.dart';
@@ -77,6 +79,19 @@ class AppConf {
       _networkGappsInfo = NetworkGappsInfo.formJson(savedNetworkGappsInfo);
       return 0;
     }
+  }
+
+  static void openUrl(String url) {
+    FlutterWebBrowser.openWebPage(
+      url: url,
+      customTabsOptions: CustomTabsOptions(
+        colorScheme: CustomTabsColorScheme.light,
+        toolbarColor: Colors.white,
+        addDefaultShareMenuItem: true,
+        showTitle: true,
+        urlBarHidingEnabled: true,
+      ),
+    );
   }
 }
 

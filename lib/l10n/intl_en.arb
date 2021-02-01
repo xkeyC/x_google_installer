@@ -1,7 +1,7 @@
 {
   "_locale": "en",
   "title_uninstall": "Uninstall",
-  "title_about_us": "About Us",
+  "title_about": "About",
   "title_settings": "Settings",
   "title_deviceInfo": "DeviceInfo",
   "title_architecture": "Architecture",
@@ -26,6 +26,12 @@
   "title_installation_failed": "installation failed?",
   "title_remove_download_file": "Remove Download File",
   "title_check_update": "Check for updates",
+  "title_opens_source_license": "Open Source License",
+  "title_project_home_site": "Project Home Site",
+  "title_project_main_developer": "Main developer",
+  "title_donate": "Donate",
+  "title_view_donor_list": "View Donor List",
+  "title_donor_list": "Donor List",
   "c_framework_is_system_app": "Sorry, your Google framework is a system application and we cannot uninstall it for you.",
   "c_framework_ok": "All Done! Now you can enjoy Google services.",
   "c_framework_error": "Google framework isn’t installed on your device!",
@@ -36,5 +42,7 @@
   "c_tip_installed": "NOTE:\n\nIf you encounter a situation where Google applications such as Chrome and Youtube cannot recognize the logged-in account, please try to enable the read account permission of these applications.",
   "c_err_connect_server": "Failed to connect to the clinux.co server.",
   "c_installation_failed": "Some devices have pre-installed the Google Play Service program that is inconsistent with the official Google signature. The service will be automatically updated to the official version after you successfully log in to the Play Store. Please try to skip the installation of the Service, and install and launch Google Play later.",
-  "c_downgrade_install": "Unless you have performed some Hack operations on your device, the Android system will not allow you to downgrade the installation. Please uninstall the new version first, and then reinstall the old version."
+  "c_downgrade_install": "Unless you have performed some Hack operations on your device, the Android system will not allow you to downgrade the installation. Please uninstall the new version first, and then reinstall the old version.",
+  "c_donate": "Make XGI better",
+  "c_donate_tip": "* Donation is your completely voluntary behavior, your donation will make the software better development, you will not get more priority technical support or software functionality changes because of donation, the way and amount of donation are decided by you, it is recommended that you note your nickname and message when donating, the list of donors will be permanently hard coded in the code of the software, and with the software update for update."
 }
