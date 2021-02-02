@@ -515,10 +515,10 @@ class S {
     );
   }
 
-  /// `Oh Shit! It is detected that you are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.`
+  /// `Oh Shit! You are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.`
   String get c_fuck_miui {
     return Intl.message(
-      'Oh Shit! It is detected that you are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.',
+      'Oh Shit! You are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.',
       name: 'c_fuck_miui',
       desc: '',
       args: [],
