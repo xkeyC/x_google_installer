@@ -4,7 +4,7 @@ import 'package:x_google_installer/ui/main_pages/home_page.dart';
 import 'package:x_google_installer/ui/settings_page.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
-import 'install_page.dart';
+import 'install_page/install_page.dart';
 
 class MainPage extends StatefulWidget {
   @override

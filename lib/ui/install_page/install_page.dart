@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
-import '../conf.dart';
+import '../../conf.dart';
 
 typedef PageGo = void Function(int);
 

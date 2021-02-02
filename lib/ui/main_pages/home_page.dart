@@ -8,7 +8,7 @@ import 'package:x_google_installer/generated/l10n.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
 import '../../conf.dart';
-import '../install_page.dart';
+import '../install_page/install_page.dart';
 
 class GoogleFrameworkStatus {
   AppInfo framework;
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     checkState();
 
-    /// fuck MIUI
+    /// check MIUI
 
     Future.delayed(Duration(milliseconds: 500)).then((_) async {
       if (AppConf.isMIUI) {
@@ -84,8 +84,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text(S.of(context).title_fuck_miui),
-                content: Text(S.of(context).c_fuck_miui),
+                title: Text(S.of(context).title_discovery_miui),
+                content: Text(S.of(context).c_discovery_miui),
                 actions: [
                   TextButton(
                       onPressed: () {
