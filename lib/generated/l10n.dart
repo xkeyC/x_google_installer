@@ -385,6 +385,76 @@ class S {
     );
   }
 
+  /// `Click To Start`
+  String get title_click_to_start {
+    return Intl.message(
+      'Click To Start',
+      name: 'title_click_to_start',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checking Root ...`
+  String get title_checking_root {
+    return Intl.message(
+      'Checking Root ...',
+      name: 'title_checking_root',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Root`
+  String get title_no_root {
+    return Intl.message(
+      'No Root',
+      name: 'title_no_root',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check Syslock`
+  String get title_check_syslock {
+    return Intl.message(
+      'Check Syslock',
+      name: 'title_check_syslock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Starting wifi adb ...`
+  String get title_start_wifi_adb {
+    return Intl.message(
+      'Starting wifi adb ...',
+      name: 'title_start_wifi_adb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connecting to adb ...`
+  String get title_connect_to_adb {
+    return Intl.message(
+      'Connecting to adb ...',
+      name: 'title_connect_to_adb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checking Syslock Status...`
+  String get title_check_syslock_status {
+    return Intl.message(
+      'Checking Syslock Status...',
+      name: 'title_check_syslock_status',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sorry, your Google framework is a system application and we cannot uninstall it for you.`
   String get c_framework_is_system_app {
     return Intl.message(
@@ -515,10 +585,10 @@ class S {
     );
   }
 
-  /// `You are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.`
+  /// `Xiaomi has removed the Google framework whitelist in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, please use the NOROOT installation method, otherwise, please use the ROOT method to install.`
   String get c_discovery_miui {
     return Intl.message(
-      'You are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.',
+      'Xiaomi has removed the Google framework whitelist in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, please use the NOROOT installation method, otherwise, please use the ROOT method to install.',
       name: 'c_discovery_miui',
       desc: '',
       args: [],

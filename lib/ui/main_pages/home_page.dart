@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:installed_apps/app_info.dart';
 import 'package:installed_apps/installed_apps.dart';
 import 'package:x_google_installer/generated/l10n.dart';
+import 'package:x_google_installer/ui/install_page/install_miui_page.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
 import '../../conf.dart';
@@ -75,28 +76,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     checkState();
-
-    /// check MIUI
-
-    Future.delayed(Duration(milliseconds: 500)).then((_) async {
-      if (AppConf.isMIUI) {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text(S.of(context).title_discovery_miui),
-                content: Text(S.of(context).c_discovery_miui),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text("ok"))
-                ],
-              );
-            });
-      }
-    });
 
     super.initState();
   }
@@ -188,10 +167,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     onPressed: () {
                       if (status.getStatusCode() < 0 ||
                           status.getStatusCode() == 1) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext context) {
-                          return InstallPage();
-                        }));
+                        goInstall(context, InstallMode.defaultMode);
                       }
                       if (status.getStatusCode() == 0) {
                         LaunchApp.openApp(
@@ -210,12 +186,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         right: MediaQuery.of(context).size.width * .2),
                     child: TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (BuildContext context) {
-                            return InstallPage(
-                              installMode: InstallMode.reinstallMode,
-                            );
-                          }));
+                          goInstall(context, InstallMode.reinstallMode);
                         },
                         child: Text(
                             S.of(context).title_reinstall_google_framework))),
@@ -223,6 +194,51 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         ),
       ),
     );
+  }
+
+  void goInstall(BuildContext context, int installMode,
+      {bool oldMiui = false}) {
+    if (AppConf.isMIUI && !oldMiui) {
+      miuiInstall(context, installMode);
+      return;
+    }
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return InstallPage(
+        installMode: installMode,
+      );
+    }));
+  }
+
+  void miuiInstall(
+    BuildContext context,
+    int installMode,
+  ) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(S.of(context).title_discovery_miui),
+            content: Text(S.of(context).c_discovery_miui),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return InstallMiuiPage();
+                    }));
+                  },
+                  child: Text("ROOT")),
+              TextButton(onPressed: null, child: Text("MAGISK")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    goInstall(context, installMode, oldMiui: true);
+                  },
+                  child: Text("NOROOT")),
+            ],
+          );
+        });
   }
 }
 

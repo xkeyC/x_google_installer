@@ -5,4 +5,16 @@ class AppChannel {
   static Future<bool> checkRoot() async {
     return await _channel.invokeMethod<bool>("checkRoot");
   }
+
+  static Future<bool> startWifiAdb() async {
+    return await _channel.invokeMethod<bool>("startWifiAdb");
+  }
+
+  static Future<bool> connectToWifiAdb() async {
+    return await _channel.invokeMethod<bool>("connectToWifiAdb");
+  }
+
+  static Future<int> checkSyslock() async {
+    return await _channel.invokeMethod<int>("checkSyslock");
+  }
 }

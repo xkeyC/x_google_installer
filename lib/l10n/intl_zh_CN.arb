@@ -34,6 +34,13 @@
   "title_donor_list": "捐赠者名单",
   "title_discovery_miui": "发现 MIUI！",
   "title_join_qq_group": "加入 QQ 群",
+  "title_click_to_start": "点击开始",
+  "title_checking_root": "检查 Root 中...",
+  "title_no_root": "没有 Root，点击重试",
+  "title_check_syslock": "检查系统分区锁",
+  "title_start_wifi_adb": "启动 wifi adb 中...",
+  "title_connect_to_adb": "连接至 adb...",
+  "title_check_syslock_status": "检查系统分区锁状态中...",
   "c_framework_is_system_app": "抱歉，您的 Google 框架为系统预装应用，我们无法帮您卸载。",
   "c_framework_ok": "全部OK！现在，您可以在您的设备上享受 Google Play 服务！",
   "c_framework_error": "啊嘞！您的设备还没有安装 Google Play 服务。",
@@ -47,5 +54,5 @@
   "c_downgrade_install": "除非您对您的设备进行过一些 Hack 操作，否则 Android 系统将不允许您进行降级安装，请先卸载新版本，再重新安装旧版本。",
   "c_donate": "让 XGI 变得更好",
   "c_donate_tip": "* 捐赠是您完全自愿的行为，您的捐赠会让本软件更好的发展，您不会因为捐赠而获得更优先的技术支持或软件功能性上的改变，捐赠的方式和金额都由您来决定，推荐您在捐赠时备注您的昵称与留言，捐赠者名单将会永久的硬编码于本软件的代码之中，并随着软件的更新而更新。",
-  "c_discovery_miui": "检测到您正在使用 MIUI，请确保您的设备为 MIUI 12.5 21.2.1 之前的版本，否则安装器暂时无法帮助您安装 Google 框架。\n适用于 MIUI 21.2.1 的 Root 版开发方案正在开发中，敬请期待。"
+  "c_discovery_miui": "小米已于 Miui 12.5 v21.2.1 以后的版本 移除了 Google 框架的白名单，如果您是该版本之前的MIUI，请使用 NOROOT 安装方式，否则请使用 ROOT 方式安装。"
 }
