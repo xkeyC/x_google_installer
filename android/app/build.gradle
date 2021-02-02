@@ -14,7 +14,7 @@ if (flutterRoot == null) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.google.gms.google-services'
+
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 /// add signingConfig.gradle File to import signingConfig
 apply from: "signingConfig.gradle"
