@@ -429,9 +429,7 @@ Widget makeDeviceInfoRow(
     BuildContext context, Widget icon, String title, String subtitle,
     {double subtitleSize = 13}) {
   return Padding(
-    padding: EdgeInsets.only(
-        left: MediaQuery.of(context).size.width * 0.04,
-        right: MediaQuery.of(context).size.width * 0.04),
+    padding: EdgeInsets.only(left: 10, right: 10),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,

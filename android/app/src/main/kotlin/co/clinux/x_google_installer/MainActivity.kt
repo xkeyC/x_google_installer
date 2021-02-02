@@ -20,6 +20,7 @@ class MainActivity : FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
     }
 
+    /// check Root
     private fun checkRoot(result: MethodChannel.Result) {
         var ok = false
         try {
