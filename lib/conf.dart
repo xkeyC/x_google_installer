@@ -17,6 +17,7 @@ class AppConf {
   static NetworkGappsInfo _networkGappsInfo;
   static AndroidDeviceInfo _androidDeviceInfo;
   static AppInfo _thisAppInfo;
+  static bool _isMIUI = false;
 
   static IndexData get gappsIndex {
     return _indexData;
@@ -34,6 +35,10 @@ class AppConf {
     return _thisAppInfo;
   }
 
+  static bool get isMIUI {
+    return _isMIUI;
+  }
+
   static Future<int> initData({bool enforce = false}) async {
     _thisAppInfo = await InstalledApps.getAppInfo("co.clinux.googleinstaller");
 
@@ -41,6 +46,13 @@ class AppConf {
       _androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
     } else {
       SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    }
+
+    try {
+      _isMIUI =
+          await InstalledApps.getAppInfo("com.miui.securitycenter") != null;
+    } catch (_) {
+      _isMIUI = false;
     }
 
     await Hive.initFlutter();

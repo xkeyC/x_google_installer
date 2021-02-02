@@ -99,6 +99,10 @@ class _AboutPageState extends State<AboutPage> {
                   return DonatePage();
                 });
           }),
+          makeItemCard(
+              Text(S.of(context).title_join_qq_group), Text("204719969"), () {
+            AppConf.openUrl("https://jq.qq.com/?_wv=1027&k=HCNvu5uR");
+          })
         ],
       ),
     );

@@ -19,7 +19,12 @@ class DonorListPage extends StatefulWidget {
 class _DonorListPageState extends State<DonorListPage> {
   /// Donate data
   static const List<DonateInfo> _donateInfoList = [
-    DonateInfo("xkeyC", "2021-02-01", "这是一条示例，将会在拥有正式信息后移除", "￥ 0.00"),
+    DonateInfo("匿名", "2021-02-01 21:28:07", "作者辛苦了，来瓶可乐!", "￥ 3.00"),
+    DonateInfo("匿名", "2021-02-01 21:45:03", "谢谢！", "￥ 5.00"),
+    DonateInfo("ariel", "2021-02-01 21:57:22", "不多表支持", "￥ 10.00"),
+    DonateInfo("匿名", "2021-02-01 23:10:39", "感谢您的付出一点心意", "￥ 10.00"),
+    DonateInfo("匿名", "2021-02-02 02:34:13", "支持一下！！！", "￥ 6.66"),
+    DonateInfo("zerodays", "2021-02-02 07:05:59", null, "￥ 10.00"),
   ];
 
   @override
@@ -27,10 +32,13 @@ class _DonorListPageState extends State<DonorListPage> {
     return Scaffold(
       appBar: makeAppBar(context,
           showBackButton: true,
-          title: Text(
-            S.of(context).title_donor_list,
-            style: TextStyle(
-                color: getTextColor(context), fontWeight: FontWeight.bold),
+          title: ListTile(
+            title: Text(
+              S.of(context).title_donor_list,
+              style: TextStyle(
+                  color: getTextColor(context), fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text("更新于 2021-2-2"),
           )),
       body: Scrollbar(
         child: ListView.builder(
@@ -57,7 +65,7 @@ class _DonorListPageState extends State<DonorListPage> {
                         )
                       ]),
                 ),
-                subtitle: Text(info.comment),
+                subtitle: info.comment == null ? null : Text(info.comment),
                 trailing: Text(info.count),
                 onTap: () {},
               );

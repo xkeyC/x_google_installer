@@ -44,6 +44,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   GoogleFrameworkStatus status = GoogleFrameworkStatus(null, null, null);
+  GlobalKey<ScaffoldState> _scaffold = GlobalKey();
 
   /// check GApps Status
   void checkState() async {
@@ -74,6 +75,29 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     checkState();
+
+    /// fuck MIUI
+
+    Future.delayed(Duration(milliseconds: 500)).then((_) async {
+      if (AppConf.isMIUI) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(S.of(context).title_fuck_miui),
+                content: Text(S.of(context).c_fuck_miui),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("ok"))
+                ],
+              );
+            });
+      }
+    });
+
     super.initState();
   }
 
@@ -96,6 +120,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffold,
       backgroundColor: getPageBackground(context),
       body: RefreshIndicator(
         onRefresh: () async {

@@ -365,6 +365,26 @@ class S {
     );
   }
 
+  /// `Fuck Miui!`
+  String get title_fuck_miui {
+    return Intl.message(
+      'Fuck Miui!',
+      name: 'title_fuck_miui',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join QQ Group`
+  String get title_join_qq_group {
+    return Intl.message(
+      'Join QQ Group',
+      name: 'title_join_qq_group',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sorry, your Google framework is a system application and we cannot uninstall it for you.`
   String get c_framework_is_system_app {
     return Intl.message(
@@ -490,6 +510,16 @@ class S {
     return Intl.message(
       '* Donation is your completely voluntary behavior, your donation will make the software better development, you will not get more priority technical support or software functionality changes because of donation, the way and amount of donation are decided by you, it is recommended that you note your nickname and message when donating, the list of donors will be permanently hard coded in the code of the software, and with the software update for update.',
       name: 'c_donate_tip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oh Shit! It is detected that you are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.`
+  String get c_fuck_miui {
+    return Intl.message(
+      'Oh Shit! It is detected that you are using MIUI, please make sure that your device is a version prior to MIUI 12.5 21.2.1, otherwise the installer cannot help you install the Google framework temporarily.\nThe Root version development plan for MIUI 21.2.1 is under development, so stay tuned.',
+      name: 'c_fuck_miui',
       desc: '',
       args: [],
     );
