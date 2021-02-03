@@ -585,10 +585,10 @@ class S {
     );
   }
 
-  /// `Xiaomi has removed the Google framework whitelist in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, please use the NOROOT installation method, otherwise, please use the ROOT method to install.`
+  /// `Xiaomi has removed the whitelist of the Google framework in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, you can continue to use this installer, otherwise XGI cannot help you.`
   String get c_discovery_miui {
     return Intl.message(
-      'Xiaomi has removed the Google framework whitelist in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, please use the NOROOT installation method, otherwise, please use the ROOT method to install.',
+      'Xiaomi has removed the whitelist of the Google framework in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, you can continue to use this installer, otherwise XGI cannot help you.',
       name: 'c_discovery_miui',
       desc: '',
       args: [],

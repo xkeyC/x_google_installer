@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("zh_CN"),
-    "c_discovery_miui" : MessageLookupByLibrary.simpleMessage("小米已于 Miui 12.5 v21.2.1 以后的版本 移除了 Google 框架的白名单，如果您是该版本之前的MIUI，请使用 NOROOT 安装方式，否则请使用 ROOT 方式安装。"),
+    "c_discovery_miui" : MessageLookupByLibrary.simpleMessage("小米已于 Miui 12.5 v21.2.1 以后的版本 移除了 Google 框架的白名单，如果您是该版本之前的MIUI，则可以继续使用本安装器，否则 XGI 无法帮助到您。"),
     "c_donate" : MessageLookupByLibrary.simpleMessage("让 XGI 变得更好"),
     "c_donate_tip" : MessageLookupByLibrary.simpleMessage("* 捐赠是您完全自愿的行为，您的捐赠会让本软件更好的发展，您不会因为捐赠而获得更优先的技术支持或软件功能性上的改变，捐赠的方式和金额都由您来决定，推荐您在捐赠时备注您的昵称与留言，捐赠者名单将会永久的硬编码于本软件的代码之中，并随着软件的更新而更新。"),
     "c_downgrade_install" : MessageLookupByLibrary.simpleMessage("除非您对您的设备进行过一些 Hack 操作，否则 Android 系统将不允许您进行降级安装，请先卸载新版本，再重新安装旧版本。"),

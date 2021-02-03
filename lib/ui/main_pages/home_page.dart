@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:installed_apps/app_info.dart';
 import 'package:installed_apps/installed_apps.dart';
 import 'package:x_google_installer/generated/l10n.dart';
-import 'package:x_google_installer/ui/install_page/install_miui_page.dart';
 import 'package:x_google_installer/ui/widgets.dart';
 
 import '../../conf.dart';
@@ -76,6 +75,36 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     checkState();
+
+    /// show Miui Tip
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(S.of(context).title_discovery_miui),
+            content: Text(S.of(context).c_discovery_miui),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    AppConf.openUrl(
+                        "https://www.zhihu.com/question/442452833/answer/1713752371");
+                  },
+                  child: Text("发生了什么？（知乎）")),
+              TextButton(
+                  onPressed: () {
+                    AppConf.openUrl(
+                        "https://github.com/clinux-co/x_google_installer/blob/main/miui_backup.md");
+                  },
+                  child: Text("原帖备份（Github）")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("我知道了"))
+            ],
+          );
+        });
 
     super.initState();
   }
@@ -196,49 +225,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     );
   }
 
-  void goInstall(BuildContext context, int installMode,
-      {bool oldMiui = false}) {
-    if (AppConf.isMIUI && !oldMiui) {
-      miuiInstall(context, installMode);
-      return;
-    }
+  void goInstall(
+    BuildContext context,
+    int installMode,
+  ) {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
       return InstallPage(
         installMode: installMode,
       );
     }));
-  }
-
-  void miuiInstall(
-    BuildContext context,
-    int installMode,
-  ) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(S.of(context).title_discovery_miui),
-            content: Text(S.of(context).c_discovery_miui),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return InstallMiuiPage();
-                    }));
-                  },
-                  child: Text("ROOT")),
-              TextButton(onPressed: null, child: Text("MAGISK")),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    goInstall(context, installMode, oldMiui: true);
-                  },
-                  child: Text("NOROOT")),
-            ],
-          );
-        });
   }
 }
 

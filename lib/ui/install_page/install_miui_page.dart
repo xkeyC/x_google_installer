@@ -97,7 +97,10 @@ class _CheckSyslockState extends State<_CheckSyslock> {
                 });
               } else if (sysLock == 1) {
                 /// need reboot
-              } else if (sysLock == 1) {}
+              } else if (sysLock == 1) {
+                /// next
+
+              }
             }
           : null,
     );

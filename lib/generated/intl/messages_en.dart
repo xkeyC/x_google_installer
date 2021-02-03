@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "_locale" : MessageLookupByLibrary.simpleMessage("en"),
-    "c_discovery_miui" : MessageLookupByLibrary.simpleMessage("Xiaomi has removed the Google framework whitelist in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, please use the NOROOT installation method, otherwise, please use the ROOT method to install."),
+    "c_discovery_miui" : MessageLookupByLibrary.simpleMessage("Xiaomi has removed the whitelist of the Google framework in Miui 12.5 v21.2.1 and later versions. If you are a MIUI before this version, you can continue to use this installer, otherwise XGI cannot help you."),
     "c_donate" : MessageLookupByLibrary.simpleMessage("Make XGI better"),
     "c_donate_tip" : MessageLookupByLibrary.simpleMessage("* Donation is your completely voluntary behavior, your donation will make the software better development, you will not get more priority technical support or software functionality changes because of donation, the way and amount of donation are decided by you, it is recommended that you note your nickname and message when donating, the list of donors will be permanently hard coded in the code of the software, and with the software update for update."),
     "c_downgrade_install" : MessageLookupByLibrary.simpleMessage("Unless you have performed some Hack operations on your device, the Android system will not allow you to downgrade the installation. Please uninstall the new version first, and then reinstall the old version."),

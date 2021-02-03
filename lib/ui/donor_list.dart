@@ -25,6 +25,7 @@ class _DonorListPageState extends State<DonorListPage> {
     DonateInfo("匿名", "2021-02-01 23:10:39", "感谢您的付出一点心意", "￥ 10.00"),
     DonateInfo("匿名", "2021-02-02 02:34:13", "支持一下！！！", "￥ 6.66"),
     DonateInfo("zerodays", "2021-02-02 07:05:59", null, "￥ 10.00"),
+    DonateInfo("匿名", "2021-02-02 16:31:29", "辛苦了，来瓶可乐!", "￥ 3.00"),
   ];
 
   @override
@@ -38,7 +39,7 @@ class _DonorListPageState extends State<DonorListPage> {
               style: TextStyle(
                   color: getTextColor(context), fontWeight: FontWeight.bold),
             ),
-            subtitle: Text("更新于 2021-2-2"),
+            subtitle: Text("更新于 2021-2-4"),
           )),
       body: Scrollbar(
         child: ListView.builder(
