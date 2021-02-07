@@ -32,8 +32,8 @@ android {
         applicationId "co.clinux.googleinstaller"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 202102040
-        versionName "0.2.4.2 beta"
+        versionCode 202102070
+        versionName "0.2.4.3 beta"
     }
 
     buildTypes {

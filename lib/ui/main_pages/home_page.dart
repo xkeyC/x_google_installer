@@ -78,33 +78,35 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     /// show Miui Tip
 
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(S.of(context).title_discovery_miui),
-            content: Text(S.of(context).c_discovery_miui),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    AppConf.openUrl(
-                        "https://www.zhihu.com/question/442452833/answer/1713752371");
-                  },
-                  child: Text("发生了什么？（知乎）")),
-              TextButton(
-                  onPressed: () {
-                    AppConf.openUrl(
-                        "https://github.com/clinux-co/x_google_installer/blob/main/miui_backup.md");
-                  },
-                  child: Text("原帖备份（Github）")),
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("我知道了"))
-            ],
-          );
-        });
+    if (AppConf.isMIUI) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(S.of(context).title_discovery_miui),
+              content: Text(S.of(context).c_discovery_miui),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      AppConf.openUrl(
+                          "https://www.zhihu.com/question/442452833/answer/1713752371");
+                    },
+                    child: Text("发生了什么？（知乎）")),
+                TextButton(
+                    onPressed: () {
+                      AppConf.openUrl(
+                          "https://github.com/clinux-co/x_google_installer/blob/main/miui_backup.md");
+                    },
+                    child: Text("原帖备份（Github）")),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("我知道了"))
+              ],
+            );
+          });
+    }
 
     super.initState();
   }
