@@ -26,6 +26,7 @@ class _DonorListPageState extends State<DonorListPage> {
     DonateInfo("匿名", "2021-02-02 02:34:13", "支持一下！！！", "￥ 6.66"),
     DonateInfo("zerodays", "2021-02-02 07:05:59", null, "￥ 10.00"),
     DonateInfo("匿名", "2021-02-02 16:31:29", "辛苦了，来瓶可乐!", "￥ 3.00"),
+    DonateInfo("mde", "2021-02-13 21:11", "感谢您为小米GMS安装做出的努力", "￥ 6.66"),
   ];
 
   @override

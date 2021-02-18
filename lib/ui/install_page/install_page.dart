@@ -143,6 +143,7 @@ class _AppInfoPage extends StatefulWidget {
     assert(pageGo != null);
     assert(installMode != null);
   }
+
   @override
   __AppInfoPageState createState() => __AppInfoPageState();
 }
@@ -161,10 +162,8 @@ class __AppInfoPageState extends State<_AppInfoPage>
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
-    widget.apkData.forEach((id, apk) {
-      if (AppConf.androidDeviceInfo.version.sdkInt < apk.minApi) {
-        widget.apkData.remove(id);
-      }
+    widget.apkData.removeWhere((key, value) {
+      return value.minApi > AppConf.androidDeviceInfo.version.sdkInt;
     });
 
     if (widget.installMode != InstallMode.unInstallMode) {
@@ -173,6 +172,13 @@ class __AppInfoPageState extends State<_AppInfoPage>
       value = -2;
     }
     updatePackageInfo();
+
+    if (widget.apkData.length == 0) {
+      setState(() {
+        value = -1;
+      });
+    }
+
     super.initState();
   }
 
