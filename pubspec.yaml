@@ -12,20 +12,20 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  hive: ^1.4.4+1
-  hive_flutter: ^0.3.1
-  font_awesome_flutter: ^8.11.0
-  dio: ^3.0.10
-  device_info: ^1.0.0
-  cached_network_image: ^2.5.0
+  hive: ^2.0.3
+  hive_flutter: ^1.0.0
+  font_awesome_flutter: ^9.0.0
+  dio: ^4.0.0
+  device_info: ^2.0.0
+  cached_network_image: ^3.0.0
   external_app_launcher: ^0.0.1
   app_installer:
     git:
       url: https://github.com/xkeyC/app_installer.git
-  flutter_web_browser: ^0.13.1
-  path_provider: ^1.6.27
+  flutter_web_browser: ^0.14.0
+  path_provider: ^2.0.1
   installed_apps: ^1.1.1
-  qr_flutter: ^3.2.0
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:

@@ -13,3 +13,4 @@ key.properties
 /app/build/
 /app/seeds.txt
 /app/google-services.json
+/app/clinux.jks
