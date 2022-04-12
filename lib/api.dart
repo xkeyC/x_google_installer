@@ -8,7 +8,7 @@ class Api {
   static init() {
     if (_dio == null) {
       _dio = Dio()
-        ..options.baseUrl = "https://static.clinux.co/files/google_installer/"
+        ..options.baseUrl = "https://clinux.xkeyc.cn/files/google_installer/"
         ..options.responseType = ResponseType.plain;
     }
   }

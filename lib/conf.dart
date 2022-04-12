@@ -5,7 +5,6 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:installed_apps/app_info.dart';
 import 'package:installed_apps/installed_apps.dart';
@@ -167,9 +166,9 @@ class ApkData {
 
 class NetworkImagesIndex {
   static const String gappFramework =
-      "https://static.clinux.co/files/google_installer/img/framework.png";
+      "https://clinux.xkeyc.cn/files/google_installer/img/framework.png";
   static const String gappService =
-      "https://static.clinux.co/files/google_installer/img/service.png";
+      "https://clinux.xkeyc.cn/files/google_installer/img/service.png";
   static const String gappStore =
-      "https://static.clinux.co/files/google_installer/img/play.png";
+      "https://clinux.xkeyc.cn/files/google_installer/img/play.png";
 }

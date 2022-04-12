@@ -20,42 +20,40 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply from: "signingConfig.gradle"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
 
-
     defaultConfig {
         applicationId "co.clinux.googleinstaller"
-        minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 202104160
-        versionName "0.2.4.5 beta"
+        minSdkVersion 28
+        targetSdkVersion 31
+        versionCode 202204120
+        versionName "0.2.4.6 beta"
     }
 
     buildTypes {
         release {
             ndk {
-                abiFilters 'armeabi-v7a'
+                abiFilters 'arm64-v8a'
             }
             /// add release signingConfig to use :
             signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources = true
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources = true
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'co.clinux.x_google_installer'
 }
 
 flutter {
